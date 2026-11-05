@@ -103,7 +103,7 @@
 
           </div>
 
-          <!-- 정답 공개 후 팝업 텍스트 (교과서 79쪽 워딩 삭제 반영) -->
+          <!-- 정답 공개 후 팝업 텍스트 -->
           <div id="nollywood-info" class="mt-4 p-4 rounded-2xl bg-stone-50 border border-stone-200/80 hidden transition-all duration-300">
             <div class="flex items-center gap-2">
               <h3 class="text-sm font-bold text-stone-900">나이지리아 '놀리우드 (Nollywood)'</h3>
@@ -114,14 +114,13 @@
           </div>
         </div>
 
-        <!-- 카드 하단 푸터 (교과서 78~79 워딩 삭제 반영) -->
         <div class="mt-4 pt-3 border-t border-stone-100 text-[11px] text-stone-500 flex items-center justify-between">
           <span class="text-stone-400">현대 문화와 산업</span>
           <span class="text-emerald-700 font-bold">글로벌 문화 파워</span>
         </div>
       </div>
 
-      <!-- 우측: [탐구 2] 기후 적응 가옥 & 현대 친환경 생태 건축 (콩고 삭제 및 2단 클릭 인터랙션) -->
+      <!-- 우측: [탐구 2] 기후 적응 가옥 & 현대 친환경 생태 건축 -->
       <div class="lg:col-span-7 bg-white rounded-3xl p-7 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-3">
@@ -158,7 +157,6 @@
                 <span class="text-xs font-bold text-stone-900">모로코 흙벽돌집</span>
                 <span class="text-[10px] text-stone-400 font-medium">건조 기후</span>
               </div>
-              <!-- 클릭 시 토글되는 설명 -->
               <div id="info-mudhouse" class="mt-2.5 pt-2.5 border-t border-stone-200/80 text-[11px] text-stone-600 leading-relaxed hidden">
                 두꺼운 흙벽으로 낮의 뜨거운 열기를 차단하고, 밤의 한기를 막아주는 천연 단열 구조입니다.
               </div>
@@ -185,7 +183,6 @@
                 <span class="text-xs font-bold text-emerald-950">현대 친환경 건축</span>
                 <span class="text-[10px] text-emerald-700 font-medium">생태 건축</span>
               </div>
-              <!-- 클릭 시 토글되는 설명 -->
               <div id="info-eco" class="mt-2.5 pt-2.5 border-t border-emerald-200/80 text-[11px] text-emerald-900 leading-relaxed hidden">
                 전통 흙공법을 현대적으로 계승하여 에어컨과 탄소 배출 없이 실내 온도를 유지하는 미래형 건축으로 세계 건축계가 주목하고 있습니다.
               </div>
@@ -193,7 +190,7 @@
 
           </div>
 
-          <!-- 결론 요약 박스 (워딩 수정: "아프리카의 흙벽돌집은") -->
+          <!-- 결론 요약 박스 -->
           <div class="mt-5 p-3.5 rounded-2xl bg-stone-50 border border-stone-200 text-xs text-stone-700 leading-relaxed">
             <strong class="text-stone-900 font-bold">💡 지리적 가치 도출:</strong> 
             <strong class="text-emerald-800 font-bold">아프리카의 흙벽돌집은</strong> 결핍의 산물이 아니라, 각 지역의 기후 환경에 능동적으로 적응하며 꽃피운 <span class="underline decoration-emerald-300 font-semibold">‘지혜로운 다양성’</span>입니다.
@@ -213,6 +210,7 @@
               <span>[문화 다양성] 조각 획득하기</span>
             </button>
             
+            <!-- ★ href를 people.html로 올바르게 수정한 부분 -->
             <a id="btn-next" href="people.html" class="hidden inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold text-sm hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-600/20 transition-all animate-bounce">
               <span>Stage 02 (인구)로 이동</span>
               <i class="fa-solid fa-arrow-right text-xs"></i>
@@ -233,7 +231,6 @@
 
   <!-- 자바스크립트 인터랙션 로직 -->
   <script>
-    // 1. 놀리우드 블라인드 해제 함수
     function revealBlind() {
       const overlay = document.getElementById('blind-overlay');
       const img = document.getElementById('nollywood-img');
@@ -245,7 +242,6 @@
       info.classList.remove('hidden');
     }
 
-    // 2. 가옥 사진 클릭 시 설명 토글 함수
     function toggleHouseInfo(type) {
       const infoBox = document.getElementById(`info-${type}`);
       if (infoBox.classList.contains('hidden')) {
@@ -255,7 +251,6 @@
       }
     }
 
-    // 3. 문화 다양성 조각 획득 함수 (상단 슬롯에 초록 배지 장착)
     function claimCulturePiece() {
       const slot = document.getElementById('slot-culture');
       const icon = document.getElementById('slot-icon');
