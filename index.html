@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapping Africa - 아프리카 가치 재발견 프로젝트</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { font-family: 'Pretendard', sans-serif; }
+    
+    .bg-ivory { background-color: #FBF9F4; }
+    .border-ivory { border-color: #ECE7DE; }
+  </style>
+</head>
+<body class="bg-ivory text-stone-800 min-h-screen flex flex-col justify-between selection:bg-emerald-200 selection:text-emerald-950">
+
+  <!-- 상단 헤더: 가치 퍼즐 슬롯 -->
+  <header class="w-full px-8 py-4 bg-white/90 backdrop-blur-md border-b border-ivory sticky top-0 z-50 flex justify-between items-center shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-sm">
+        <i class="fa-solid fa-earth-africa text-xl"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-bold text-emerald-800 tracking-wider uppercase bg-emerald-100/60 px-2 py-0.5 rounded-md">중학교 지리 탐구</span>
+          <span class="text-[11px] text-stone-600 font-medium">[9사(지리)04-02]</span>
+        </div>
+        <h1 class="text-base font-extrabold text-stone-900 tracking-tight mt-0.5">아프리카 가치 재발견 프로젝트</h1>
+      </div>
+    </div>
+
+    <!-- 3대 가치 퍼즐 슬롯 -->
+    <div class="flex items-center gap-2.5 bg-stone-50 px-4 py-2 rounded-2xl border border-stone-200/80 shadow-inner">
+      <span class="text-xs text-stone-600 font-bold mr-1 flex items-center gap-1">
+        <i class="fa-solid fa-puzzle-piece text-emerald-800"></i> 가치 퍼즐
+      </span>
+      
+      <!-- Slot 1: 문화 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-stone-300 bg-white text-stone-500 text-xs font-semibold">
+        <i class="fa-solid fa-lock text-[10px] text-stone-400"></i>
+        <span>1. 문화 다양성</span>
+      </div>
+
+      <!-- Slot 2: 인구 (수정 반영) -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-stone-300 bg-white text-stone-500 text-xs font-semibold">
+        <i class="fa-solid fa-lock text-[10px] text-stone-400"></i>
+        <span>2. 젊은 인구</span>
+      </div>
+
+      <!-- Slot 3: 자원 (수정 반영) -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-stone-300 bg-white text-stone-500 text-xs font-semibold">
+        <i class="fa-solid fa-lock text-[10px] text-stone-400"></i>
+        <span>3. 풍부한 자원</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 영역 -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-10 flex flex-col justify-center items-center">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full items-stretch">
+      
+      <!-- 좌측: 도입 단어구름 고정관념 확인 카드 -->
+      <div class="lg:col-span-5 bg-white rounded-3xl p-8 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
+            단어구름 사전 조사 결과
+          </div>
+          <h2 class="text-2xl font-black text-stone-900 tracking-tight leading-snug">
+            우리가 먼저 떠올린<br>
+            <span class="text-rose-600 underline decoration-rose-300 underline-offset-4">아프리카의 첫인상</span>
+          </h2>
+          <p class="text-stone-600 text-sm mt-3 leading-relaxed">
+            지리 수업에서 사헬의 사막화와 가뭄, 기아만을 배우며 우리도 모르게 편견의 렌즈를 끼고 있지는 않았을까요?
+          </p>
+
+          <!-- 단어구름 키워드 태그 -->
+          <div class="flex flex-wrap gap-2.5 mt-6">
+            <span class="px-3.5 py-1.5 rounded-xl bg-stone-100 text-rose-700 font-bold text-sm border border-rose-200/60 shadow-sm">#기아와가뭄</span>
+            <span class="px-4 py-2 rounded-xl bg-stone-100 text-stone-800 font-extrabold text-base border border-stone-300 shadow-sm">#원시부족생활</span>
+            <span class="px-3 py-1.5 rounded-xl bg-stone-100 text-stone-600 font-semibold text-xs border border-stone-200">#사헬_사막화</span>
+            <span class="px-3.5 py-1.5 rounded-xl bg-stone-100 text-amber-800 font-bold text-sm border border-amber-200 shadow-sm">#인구과밀_난민</span>
+            <span class="px-4 py-2 rounded-xl bg-stone-100 text-stone-700 font-semibold text-sm border border-stone-200">#사파리와맹수</span>
+            <span class="px-4 py-2.5 rounded-xl bg-rose-100 text-rose-800 font-black text-lg border border-rose-300 shadow-md">#원조와기부의대상</span>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-5 border-t border-stone-100 text-xs text-stone-600 flex items-center justify-between font-medium">
+          <span>* 편견을 깨는 첫 걸음</span>
+          <span class="text-emerald-800 font-semibold">단 하나의 이야기 넘어서기</span>
+        </div>
+      </div>
+
+      <!-- 우측: 프로젝트 선언 및 퀘스트 시작 카드 -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-8 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
+        
+        <div class="relative z-10">
+          
+          <!-- ★ 저장하신 사진(images/africa_intro.jpg)이 들어가는 배너 위치 -->
+          <div class="w-full h-44 rounded-2xl overflow-hidden mb-6 border border-stone-200 shadow-sm bg-stone-100 relative group">
+            <img 
+              src="images/africa_intro.jpg" 
+              alt="아프리카 전경" 
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            >
+            <!-- 이미지가 없을 경우 표시되는 산뜻한 기본 그래픽 플레이스홀더 -->
+            <div class="hidden w-full h-full bg-gradient-to-r from-emerald-100/70 to-blue-100/70 flex flex-col items-center justify-center text-stone-500 gap-1.5">
+              <i class="fa-regular fa-image text-2xl text-emerald-700/60"></i>
+              <span class="text-xs font-semibold text-stone-600">images/africa_intro.jpg 사진 위치</span>
+            </div>
+          </div>
+
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-3">
+            <i class="fa-solid fa-compass text-emerald-700"></i> 탐구 과제
+          </div>
+          
+          <h3 class="text-2xl lg:text-3xl font-black text-stone-900 tracking-tight leading-snug">
+            편견의 렌즈를 벗고,<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-blue-700">진짜 아프리카의 지도를 완성하라</span>
+          </h3>
+          
+          <p class="text-stone-600 text-sm mt-3 leading-relaxed">
+            아프리카는 하나의 나라가 아닌 54개의 다양한 삶이 숨 쉬는 거대한 대륙입니다.
+            교과서 속 지리 데이터를 통해 <strong class="text-emerald-800 font-bold">문화, 인구, 자원</strong>에 담긴 진짜 잠재력을 찾아 3개의 가치 퍼즐을 맞춰주세요.
+          </p>
+
+          <!-- 3대 스테이지 박스 (작은 부가설명 삭제 완료) -->
+          <div class="grid grid-cols-3 gap-3 mt-6">
+            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex flex-col items-center justify-center text-center py-5">
+              <span class="text-[10px] text-emerald-700 font-extrabold uppercase tracking-wider block">STAGE 01</span>
+              <span class="text-sm font-bold text-stone-900 mt-1 block">문화 다양성</span>
+            </div>
+            
+            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex flex-col items-center justify-center text-center py-5">
+              <span class="text-[10px] text-blue-700 font-extrabold uppercase tracking-wider block">STAGE 02</span>
+              <span class="text-sm font-bold text-stone-900 mt-1 block">젊은 인구</span>
+            </div>
+            
+            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 flex flex-col items-center justify-center text-center py-5">
+              <span class="text-[10px] text-teal-700 font-extrabold uppercase tracking-wider block">STAGE 03</span>
+              <span class="text-sm font-bold text-stone-900 mt-1 block">풍부한 자원</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="mt-8 pt-2 flex justify-end relative z-10">
+          <a href="culture.html" class="inline-flex items-center gap-3 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-extrabold text-base hover:from-emerald-700 hover:to-teal-800 transition-all duration-300 shadow-lg shadow-emerald-700/20 hover:shadow-emerald-700/30 hover:-translate-y-0.5 active:translate-y-0">
+            <span>첫 번째 조각(문화) 찾으러 가기</span>
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="w-full px-8 py-4 bg-white/60 border-t border-ivory text-center text-xs text-stone-600 font-medium">
+    지리교과교육론 수업시연 | 아프리카의 지리적 특성과 지역 잠재력 탐구
+  </footer>
+
+</body>
+</html>

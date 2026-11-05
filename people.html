@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 02 - 젊은 인구 | Mapping Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { font-family: 'Pretendard', sans-serif; }
+    
+    .bg-ivory { background-color: #FBF9F4; }
+    .border-ivory { border-color: #ECE7DE; }
+
+    /* 대륙별 카토그램 애니메이션 트랜지션 */
+    .carto-continent {
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  </style>
+</head>
+<body class="bg-ivory text-stone-800 min-h-screen flex flex-col justify-between selection:bg-blue-200 selection:text-blue-950">
+
+  <!-- 상단 헤더: 문화는 '완료' 상태, 인구는 '탐구중' 상태 -->
+  <header class="w-full px-8 py-4 bg-white/90 backdrop-blur-md border-b border-ivory sticky top-0 z-50 flex justify-between items-center shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700 shadow-sm hover:bg-blue-100 transition-colors">
+        <i class="fa-solid fa-earth-africa text-xl"></i>
+      </a>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-bold text-blue-800 tracking-wider uppercase bg-blue-100/60 px-2 py-0.5 rounded-md">STAGE 02</span>
+          <span class="text-[11px] text-stone-600 font-medium">교사 B 진행</span>
+        </div>
+        <h1 class="text-base font-extrabold text-stone-900 tracking-tight mt-0.5">젊은 인구의 조각 찾기</h1>
+      </div>
+    </div>
+
+    <!-- 3대 가치 퍼즐 슬롯 -->
+    <div class="flex items-center gap-2.5 bg-stone-50 px-4 py-2 rounded-2xl border border-stone-200/80 shadow-inner">
+      <span class="text-xs text-stone-600 font-bold mr-1 flex items-center gap-1">
+        <i class="fa-solid fa-puzzle-piece text-emerald-800"></i> 가치 퍼즐
+      </span>
+      
+      <!-- Slot 1: 문화 완료 배지 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-emerald-600 bg-emerald-600 text-white text-xs font-extrabold shadow-sm">
+        <i class="fa-solid fa-circle-check text-[11px] text-emerald-200"></i>
+        <span>1. 문화 다양성</span>
+      </div>
+
+      <!-- Slot 2: 인구 탐구중 -->
+      <div id="slot-people" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-blue-500 bg-blue-50 text-blue-800 text-xs font-bold transition-all duration-300">
+        <i id="slot-icon" class="fa-solid fa-spinner fa-spin text-[10px] text-blue-600"></i>
+        <span id="slot-text">2. 젊은 인구 (탐구중)</span>
+      </div>
+
+      <!-- Slot 3: 자원 대기 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-stone-300 bg-white text-stone-500 text-xs font-semibold">
+        <i class="fa-solid fa-lock text-[10px] text-stone-400"></i>
+        <span>3. 풍부한 자원</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 작업 영역 -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-6 flex flex-col justify-center">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      
+      <!-- 좌측: [탐구 1] 고정관념 깨기 (사진들을 세로로 큼직하게 배치) -->
+      <div class="lg:col-span-5 bg-white rounded-3xl p-6 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold mb-2">
+            <i class="fa-solid fa-circle-question"></i> 고정관념 깨기
+          </div>
+          <h2 class="text-xl font-black text-stone-900 tracking-tight">
+            "인구만 많고 먹여 살릴 부양 부담만 가득하다?"
+          </h2>
+          <p class="text-stone-500 text-xs mt-1 leading-relaxed">
+            중위 연령과 인구구조 그래프를 통해 대륙의 진짜 체력을 진단해 보세요.
+          </p>
+
+          <!-- ★ 세로(Vertical) 배치: 사진 박스들을 큼직하게 쌓음 -->
+          <div class="flex flex-col gap-3 mt-4">
+            
+            <!-- 1. 중위 연령 지도 사진 (세로형 대형 박스) -->
+            <div class="w-full h-40 rounded-2xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100 relative flex items-center justify-center">
+              <img 
+                src="images/pop_median_age.jpg" 
+                alt="중위 연령 지도" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+              >
+              <div class="hidden w-full h-full bg-gradient-to-r from-emerald-100/70 to-blue-100/70 flex flex-col items-center justify-center text-stone-500 gap-1.5 p-4 text-center">
+                <i class="fa-regular fa-image text-2xl text-blue-700/60"></i>
+                <span class="text-xs font-semibold text-stone-600">images/pop_median_age.jpg 사진 위치</span>
+              </div>
+            </div>
+
+            <!-- 2. 인구구조 피라미드 그래프 사진 (세로형 대형 박스) -->
+            <div class="w-full h-40 rounded-2xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100 relative flex items-center justify-center">
+              <img 
+                src="images/pop_structure_pyramid.jpg" 
+                alt="인구구조 피라미드 그래프" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+              >
+              <div class="hidden w-full h-full bg-gradient-to-r from-emerald-100/70 to-blue-100/70 flex flex-col items-center justify-center text-stone-500 gap-1.5 p-4 text-center">
+                <i class="fa-solid fa-chart-column text-2xl text-blue-700/60"></i>
+                <span class="text-xs font-semibold text-stone-600">images/pop_structure_pyramid.jpg 사진 위치</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 인구구조 및 중위 연령 심층 설명 박스 -->
+          <div class="mt-3.5 p-3 rounded-2xl bg-blue-50/60 border border-blue-100 text-xs text-stone-700 space-y-1 leading-relaxed">
+            <div class="flex items-center gap-1.5 font-bold text-blue-900">
+              <i class="fa-solid fa-magnifying-glass-chart text-blue-700"></i>
+              <span>피라미드형 인구구조의 지리적 의미</span>
+            </div>
+            <p class="text-[11px] text-stone-600">
+              노년 인구 비중이 높은 선진국과 달리, 아프리카는 유소년 및 청년층이 두터운 <strong class="text-blue-800">피라미드형 구조</strong>로 미래 생산 인력이 가장 풍부합니다.
+            </p>
+          </div>
+
+          <!-- 대륙별 중위 연령 비교 지표 바 -->
+          <div class="mt-2.5 p-3 rounded-2xl bg-stone-50 border border-stone-200/80 flex flex-col gap-1.5">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-bold text-stone-700">한국 / 유럽 (초고령화)</span>
+              <span class="font-extrabold text-stone-500">약 45~48세</span>
+            </div>
+            <div class="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+              <div class="bg-stone-400 h-full rounded-full" style="width: 85%;"></div>
+            </div>
+
+            <div class="flex justify-between items-center text-xs mt-0.5">
+              <span class="font-bold text-blue-900 flex items-center gap-1.5">
+                <i class="fa-solid fa-bolt text-blue-600"></i> 아프리카 (전 세계 최저)
+              </span>
+              <span class="font-black text-blue-700 text-sm">약 19.7세</span>
+            </div>
+            <div class="w-full bg-blue-100 h-2 rounded-full overflow-hidden">
+              <div class="bg-blue-600 h-full rounded-full animate-pulse" style="width: 36%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3 pt-2.5 border-t border-stone-100 text-[11px] text-stone-500 flex items-center justify-between">
+          <span class="text-stone-400">인구 통계 팩트</span>
+          <span class="text-blue-700 font-bold">전체 인구의 약 70%가 30세 이하</span>
+        </div>
+      </div>
+
+      <!-- 우측: [탐구 2] 세계지도 인구 카토그램 시뮬레이터 -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-6 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold mb-2">
+            <i class="fa-solid fa-earth-americas text-blue-700"></i> 세계지도 인구 변량비례도(Cartogram)
+          </div>
+          <h2 class="text-xl font-black text-stone-900 tracking-tight">
+            2080년, 세계 인구 지도의 중심이 될 대륙
+          </h2>
+          <p class="text-stone-500 text-xs mt-1 leading-relaxed">
+            슬라이더를 움직여 세계지도 위 대륙 면적이 인구에 비례해 변하는 <strong>동적 카토그램</strong>을 관찰해 보세요.
+          </p>
+
+          <!-- 세계지도 카토그램 그래픽 뷰포트 -->
+          <div class="mt-3 p-3 rounded-2xl bg-stone-900 text-white relative overflow-hidden shadow-inner flex flex-col items-center justify-center">
+            
+            <div class="w-full flex justify-between items-center text-[11px] text-stone-400 font-bold mb-1 px-3 pt-1">
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-map text-blue-400"></i> 인구 비례 세계지도 모델</span>
+              <span id="carto-stat" class="text-blue-300 font-extrabold">2025년: 세계 인구의 약 17%</span>
+            </div>
+
+            <!-- 세계지도 SVG 컨테이너 -->
+            <div class="relative w-full max-w-[480px] h-[180px] flex items-center justify-center">
+              <svg viewBox="0 0 500 240" class="w-full h-full">
+                <!-- 북미/남미 대륙 -->
+                <g id="geo-americas" class="carto-continent fill-stone-700 stroke-stone-600" style="transform-origin: 100px 120px;">
+                  <path d="M 50 30 Q 90 20 120 40 Q 110 80 80 90 Q 60 70 50 30 Z" />
+                  <path d="M 90 110 Q 130 110 120 160 Q 100 200 90 220 Q 80 180 85 130 Z" />
+                  <text x="75" y="65" class="fill-stone-400 text-[10px] font-bold pointer-events-none">아메리카</text>
+                </g>
+
+                <!-- 유럽 대륙 -->
+                <g id="geo-europe" class="carto-continent fill-stone-600 stroke-stone-500" style="transform-origin: 240px 60px;">
+                  <path d="M 210 35 Q 260 30 270 55 Q 240 75 220 70 Z" />
+                  <text x="230" y="55" class="fill-stone-300 text-[9px] font-bold pointer-events-none">유럽</text>
+                </g>
+
+                <!-- 아시아 대륙 -->
+                <g id="geo-asia" class="carto-continent fill-stone-700 stroke-stone-600" style="transform-origin: 350px 70px;">
+                  <path d="M 275 35 Q 420 30 450 75 Q 400 130 340 120 Q 290 80 275 35 Z" />
+                  <text x="350" y="75" class="fill-stone-400 text-[11px] font-bold pointer-events-none">아시아</text>
+                </g>
+
+                <!-- 오세아니아 대륙 -->
+                <g id="geo-oceania" class="carto-continent fill-stone-700 stroke-stone-600" style="transform-origin: 420px 180px;">
+                  <path d="M 390 165 Q 450 165 440 200 Q 395 205 390 165 Z" />
+                </g>
+
+                <!-- 아프리카 대륙 (동적 팽창) -->
+                <g id="geo-africa" class="carto-continent" style="transform-origin: 240px 135px; transform: scale(1);">
+                  <path 
+                    id="africa-path"
+                    d="M 205 90 Q 260 85 275 105 Q 285 130 270 160 Q 255 195 240 215 Q 230 190 220 155 Q 185 130 195 105 Z" 
+                    class="fill-blue-600 stroke-blue-300 stroke-[2.5] filter drop-shadow-[0_0_12px_rgba(37,99,235,0.6)]"
+                  />
+                  <text x="222" y="145" class="fill-white text-[12px] font-black pointer-events-none tracking-wide">아프리카</text>
+                  <circle cx="240" cy="120" r="3" class="fill-amber-300 animate-ping" />
+                </g>
+              </svg>
+
+              <!-- 동적 인구 통계 배지 -->
+              <div class="absolute bottom-2 right-3 flex items-center gap-1.5 bg-blue-950/80 border border-blue-400/40 px-2.5 py-1 rounded-xl backdrop-blur-sm shadow-md">
+                <span class="text-[10px] text-blue-300 font-bold">인구 규모:</span>
+                <span id="africa-pop-badge" class="text-xs font-black text-amber-300">14억 명</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 타임랩스 슬라이더 컨트롤러 -->
+          <div class="mt-3 p-3.5 rounded-2xl bg-blue-50/50 border border-blue-100">
+            <div class="flex justify-between items-center mb-1.5">
+              <span class="text-xs font-bold text-stone-700">시뮬레이션 연도:</span>
+              <span id="year-label" class="text-base font-black text-blue-800 px-3 py-0.5 rounded-lg bg-white border border-blue-200 shadow-sm">2025년</span>
+            </div>
+            
+            <input 
+              type="range" 
+              id="year-slider" 
+              min="2025" 
+              max="2080" 
+              step="5" 
+              value="2025" 
+              oninput="updateWorldCartogram(this.value)"
+              class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+            >
+            
+            <div class="flex justify-between text-[10px] text-stone-400 font-bold mt-1 px-1">
+              <span>2025년 (현재)</span>
+              <span>2050년</span>
+              <span>2080년 (전망)</span>
+            </div>
+
+            <!-- 실시간 설명 텍스트 -->
+            <div id="sim-text" class="mt-2.5 p-2.5 rounded-xl bg-white border border-blue-100 text-xs text-stone-700 leading-relaxed shadow-sm">
+              현재 아프리카는 약 14억 명으로, 전체 인구의 약 70%가 30세 이하인 가장 활기찬 젊음을 지니고 있습니다.
+            </div>
+          </div>
+
+          <!-- 결론 요약 박스 -->
+          <div class="mt-3 p-3 rounded-2xl bg-stone-50 border border-stone-200 text-xs text-stone-700 leading-relaxed">
+            <strong class="text-stone-900 font-bold">💡 지리적 가치 도출:</strong> 
+            세계지도 카토그램에서 보듯, 아프리카의 풍부한 청년 인구는 부양 부담이 아니라 미래 글로벌 경제를 이끌 <strong class="text-blue-800 font-bold underline decoration-blue-300">‘가장 역동적인 생산자이자 소비 시장’</strong>입니다.
+          </div>
+        </div>
+
+        <!-- 하단: 조각 획득 및 다음 단계 이동 영역 -->
+        <div class="mt-4 pt-2.5 border-t border-stone-100 flex items-center justify-between">
+          <a href="culture.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-stone-300 bg-white text-stone-600 text-xs font-bold hover:bg-stone-50 transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> 이전 (문화)
+          </a>
+
+          <!-- 조각 획득 버튼 -->
+          <div class="flex items-center gap-3">
+            <button id="btn-claim-people" onclick="claimPeoplePiece()" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-blue-700 text-white font-extrabold text-sm hover:bg-blue-800 shadow-md shadow-blue-800/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+              <i class="fa-solid fa-puzzle-piece"></i>
+              <span>[젊은 인구] 조각 획득하기</span>
+            </button>
+            
+            <a id="btn-next-resource" href="resource.html" class="hidden inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-extrabold text-sm hover:from-teal-700 hover:to-emerald-700 shadow-md shadow-teal-600/20 transition-all animate-bounce">
+              <span>Stage 03 (자원)로 이동</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="w-full px-8 py-3 bg-white/60 border-t border-ivory text-center text-xs text-stone-500 font-medium">
+    지리교과교육론 수업시연 | Stage 02: 인구 구조의 변화와 젊은 역동성
+  </footer>
+
+  <!-- 자바스크립트: 세계지도 카토그램 동적 팽창 로직 -->
+  <script>
+    function updateWorldCartogram(val) {
+      document.getElementById('year-label').innerText = val + '년';
+      const simText = document.getElementById('sim-text');
+      const geoAfrica = document.getElementById('geo-africa');
+      const geoEurope = document.getElementById('geo-europe');
+      const geoAsia = document.getElementById('geo-asia');
+      const badge = document.getElementById('africa-pop-badge');
+      const stat = document.getElementById('carto-stat');
+      
+      const progress = (val - 2025) / (2080 - 2025);
+
+      // 아프리카 대륙 카토그램 팽창
+      const africaScale = 1.0 + (progress * 0.75);
+      geoAfrica.style.transform = `scale(${africaScale})`;
+
+      // 유럽, 아시아 축소
+      const othersScale = 1.0 - (progress * 0.28);
+      const othersOpacity = 1.0 - (progress * 0.45);
+      geoEurope.style.transform = `scale(${othersScale})`;
+      geoEurope.style.opacity = othersOpacity;
+      geoAsia.style.transform = `scale(${othersScale})`;
+      geoAsia.style.opacity = othersOpacity;
+
+      if (val < 2045) {
+        badge.innerText = '14억 명';
+        stat.innerText = '2025년: 세계 인구의 약 17%';
+        simText.innerHTML = `현재 아프리카는 약 14억 명으로, 전체 인구의 약 70%가 30세 이하인 가장 활기찬 젊음을 지니고 있습니다.`;
+      } else if (val < 2070) {
+        badge.innerText = '약 25억 명 돌파';
+        stat.innerText = '2050년: 세계 인구의 약 26%';
+        simText.innerHTML = `<strong class="text-blue-800 font-bold">${val}년:</strong> 전 세계 생산연령층 인구가 감소할 때, 세계지도 속 아프리카 대륙은 거대한 생산자이자 모바일 디지털 혁신을 주도하는 중심축으로 팽창합니다.`;
+      } else {
+        badge.innerText = '약 39억 명 (압도적 1위)';
+        stat.innerText = '2080년: 세계 인구의 약 38% 육박!';
+        simText.innerHTML = `<strong class="text-blue-900 font-black">${val}년:</strong> 카토그램 세계지도가 보여주듯, 전 세계 청년 인구의 거대한 중심이 아프리카로 완전히 이동하며 지구촌 경제를 이끄는 핵심 엔진이 됩니다.`;
+      }
+    }
+
+    function claimPeoplePiece() {
+      const slot = document.getElementById('slot-people');
+      const icon = document.getElementById('slot-icon');
+      const text = document.getElementById('slot-text');
+      const btnClaim = document.getElementById('btn-claim-people');
+      const btnNext = document.getElementById('btn-next-resource');
+
+      slot.className = "flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-blue-600 bg-blue-600 text-white text-xs font-extrabold shadow-sm transition-all duration-300 transform scale-105";
+      icon.className = "fa-solid fa-circle-check text-[11px] text-blue-200";
+      text.innerText = "2. 젊은 인구 (완료)";
+
+      btnClaim.classList.add('hidden');
+      btnNext.classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
