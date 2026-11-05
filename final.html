@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final - 아프리카 인식 지도 완성 | Mapping Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { font-family: 'Pretendard', sans-serif; }
+    
+    .bg-ivory { background-color: #FBF9F4; }
+    .border-ivory { border-color: #ECE7DE; }
+
+    .glow-map {
+      filter: drop-shadow(0 0 25px rgba(16, 185, 129, 0.45)) drop-shadow(0 0 50px rgba(59, 130, 246, 0.3));
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  </style>
+</head>
+<body class="bg-ivory text-stone-800 min-h-screen flex flex-col justify-between selection:bg-emerald-200 selection:text-emerald-950">
+
+  <!-- 상단 헤더: 3대 가치 퍼즐 슬롯 -->
+  <header class="w-full px-8 py-4 bg-white/90 backdrop-blur-md border-b border-ivory sticky top-0 z-50 flex justify-between items-center shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-sm hover:bg-emerald-100 transition-colors">
+        <i class="fa-solid fa-earth-africa text-xl"></i>
+      </a>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-bold text-emerald-800 tracking-wider uppercase bg-emerald-100/60 px-2 py-0.5 rounded-md">FINALE</span>
+          <span class="text-[11px] text-stone-600 font-medium">교사 전원 진행</span>
+        </div>
+        <h1 class="text-base font-extrabold text-stone-900 tracking-tight mt-0.5">아프리카 인식 지도 완성 프로젝트</h1>
+      </div>
+    </div>
+
+    <!-- 3대 가치 퍼즐 슬롯 -->
+    <div class="flex items-center gap-2.5 bg-stone-50 px-4 py-2 rounded-2xl border border-stone-200/80 shadow-inner">
+      <span class="text-xs text-stone-600 font-bold mr-1 flex items-center gap-1">
+        <i class="fa-solid fa-puzzle-piece text-emerald-800"></i> 가치 퍼즐
+      </span>
+      
+      <div id="slot-1" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-emerald-600 bg-emerald-600 text-white text-xs font-extrabold shadow-sm">
+        <i class="fa-solid fa-circle-check text-[10px] text-emerald-200"></i>
+        <span>1. 문화 다양성</span>
+      </div>
+
+      <div id="slot-2" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-blue-600 bg-blue-600 text-white text-xs font-extrabold shadow-sm">
+        <i class="fa-solid fa-circle-check text-[10px] text-blue-200"></i>
+        <span>2. 젊은 인구</span>
+      </div>
+
+      <div id="slot-3" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-teal-600 bg-teal-600 text-white text-xs font-extrabold shadow-sm">
+        <i class="fa-solid fa-circle-check text-[10px] text-teal-200"></i>
+        <span>3. 풍부한 자원</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 작업 영역 -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-8 flex flex-col justify-center">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      
+      <!-- 좌측: [배운 내용 퀴즈 3문항] -->
+      <div class="lg:col-span-5 bg-white rounded-3xl p-6 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-2">
+            <i class="fa-solid fa-pen-to-square text-emerald-700"></i> 최종 점검 퀴즈
+          </div>
+          <h2 class="text-xl font-black text-stone-900 tracking-tight">
+            빈칸을 채워 퍼즐을 결합하세요
+          </h2>
+          <p class="text-stone-500 text-xs mt-1 leading-relaxed">
+            오늘 탐구한 3가지 핵심 지리 개념을 확인하고 최종 지도를 완성합니다.
+          </p>
+
+          <!-- 3대 퀴즈 문항 -->
+          <div class="mt-4 space-y-3.5">
+            
+            <!-- Q1. 문화 파트 -->
+            <div class="p-3.5 rounded-2xl bg-stone-50 border border-stone-200/80">
+              <span class="text-[10px] font-extrabold text-emerald-700 uppercase tracking-wider block mb-1">Q1. 문화 다양성</span>
+              <p class="text-xs text-stone-700 leading-snug">
+                할리우드 영화에 견줄 수 있을 정도로 빠르게 성장하고 있는 나이지리아의 영화 산업을 무엇이라고 하는가?
+              </p>
+              <div class="mt-2 flex gap-2">
+                <input type="text" id="quiz-1" placeholder="입력" class="flex-1 px-3 py-1.5 rounded-xl border border-stone-300 text-xs font-bold text-stone-800 focus:outline-none focus:border-emerald-500 bg-white">
+                <button onclick="checkAnswer(1)" class="px-3.5 py-1.5 rounded-xl bg-stone-800 text-white text-xs font-bold hover:bg-stone-900 transition-colors">확인</button>
+              </div>
+              <span id="feedback-1" class="text-[10px] font-bold mt-1.5 hidden"></span>
+            </div>
+
+            <!-- Q2. 인구 파트 -->
+            <div class="p-3.5 rounded-2xl bg-stone-50 border border-stone-200/80">
+              <span class="text-[10px] font-extrabold text-blue-700 uppercase tracking-wider block mb-1">Q2. 젊은 인구</span>
+              <p class="text-xs text-stone-700 leading-snug">
+                아프리카는 인구의 약 ( &nbsp;&nbsp;&nbsp;&nbsp; )% 가 30세 이하로 세계에서 가장 젊은 대륙이다.
+              </p>
+              <div class="mt-2 flex gap-2">
+                <input type="text" id="quiz-2" placeholder="입력" class="flex-1 px-3 py-1.5 rounded-xl border border-stone-300 text-xs font-bold text-stone-800 focus:outline-none focus:border-blue-500 bg-white">
+                <button onclick="checkAnswer(2)" class="px-3.5 py-1.5 rounded-xl bg-stone-800 text-white text-xs font-bold hover:bg-stone-900 transition-colors">확인</button>
+              </div>
+              <span id="feedback-2" class="text-[10px] font-bold mt-1.5 hidden"></span>
+            </div>
+
+            <!-- Q3. 자원 파트 -->
+            <div class="p-3.5 rounded-2xl bg-stone-50 border border-stone-200/80">
+              <span class="text-[10px] font-extrabold text-teal-700 uppercase tracking-wider block mb-1">Q3. 풍부한 자원</span>
+              <p class="text-xs text-stone-700 leading-snug">
+                스마트폰 배터리의 과열을 막는 핵심 원료인 코발트의 전세계 1위 생산국은 어디인가?
+              </p>
+              <div class="mt-2 flex gap-2">
+                <input type="text" id="quiz-3" placeholder="입력" class="flex-1 px-3 py-1.5 rounded-xl border border-stone-300 text-xs font-bold text-stone-800 focus:outline-none focus:border-teal-500 bg-white">
+                <button onclick="checkAnswer(3)" class="px-3.5 py-1.5 rounded-xl bg-stone-800 text-white text-xs font-bold hover:bg-stone-900 transition-colors">확인</button>
+              </div>
+              <span id="feedback-3" class="text-[10px] font-bold mt-1.5 hidden"></span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-stone-100 text-[11px] text-stone-500 flex items-center justify-between font-medium">
+          <span>* 정답을 모두 맞히면 퍼즐이 결합됩니다.</span>
+          <span id="quiz-count" class="text-emerald-700 font-bold">0 / 3 완료</span>
+        </div>
+      </div>
+
+      <!-- 우측: [대륙 전도 퍼즐 결합 & 최종 점등 뷰] (이미지 박스 제거) -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-6 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
+        
+        <div class="h-full flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold mb-2">
+              <i class="fa-solid fa-award text-amber-600"></i> 완성 스테이지
+            </div>
+            <h2 class="text-xl font-black text-stone-900 tracking-tight">
+              우리가 완성한 '진짜 아프리카 지도'
+            </h2>
+            <p class="text-stone-500 text-xs mt-1 leading-relaxed">
+              3가지 가치 퍼즐 조각이 모여 비로소 하나의 온전한 아프리카 대륙으로 빛납니다.
+            </p>
+          </div>
+
+          <!-- 대륙 전도 및 퍼즐 슬롯 그래픽 뷰포트 (확장 뷰) -->
+          <div class="my-auto py-8 rounded-3xl bg-stone-950 text-white relative overflow-hidden shadow-2xl flex flex-col items-center justify-center min-h-[380px] border border-stone-800">
+            
+            <!-- 은은한 배경 오로라 -->
+            <div id="aurora-bg" class="absolute inset-0 bg-gradient-to-tr from-emerald-950/40 via-blue-950/30 to-amber-950/20 opacity-0 transition-opacity duration-1000"></div>
+
+            <!-- 대륙 지도 SVG & 3대 가치 오버레이 -->
+            <div class="relative w-56 h-64 flex items-center justify-center z-10">
+              <svg viewBox="0 0 200 240" class="w-full h-full">
+                <!-- 아프리카 대륙 전도 윤곽 -->
+                <path 
+                  id="final-africa-map"
+                  d="M 50 40 Q 140 30 170 65 Q 185 105 160 150 Q 140 205 110 230 Q 95 195 80 150 Q 30 110 40 70 Z" 
+                  class="fill-stone-800 stroke-stone-700 stroke-[2.5] transition-all duration-700"
+                />
+              </svg>
+
+              <!-- 결합 뱃지 -->
+              <div id="piece-1" class="absolute -top-1 -left-4 px-3 py-1 rounded-full bg-stone-900 border border-stone-700 text-stone-500 text-[11px] font-bold shadow-md transition-all duration-500">
+                문화 다양성
+              </div>
+              <div id="piece-2" class="absolute top-1/2 -right-8 px-3 py-1 rounded-full bg-stone-900 border border-stone-700 text-stone-500 text-[11px] font-bold shadow-md transition-all duration-500">
+                젊은 인구
+              </div>
+              <div id="piece-3" class="absolute -bottom-2 left-4 px-3 py-1 rounded-full bg-stone-900 border border-stone-700 text-stone-500 text-[11px] font-bold shadow-md transition-all duration-500">
+                풍부한 자원
+              </div>
+            </div>
+
+            <!-- 완성 시 나타나는 최종 슬로건 배너 -->
+            <div id="final-slogan" class="hidden z-20 mt-6 text-center animate-fade-in">
+              <span class="text-[10px] tracking-widest uppercase font-extrabold text-amber-400 bg-amber-950/80 px-3.5 py-1 rounded-full border border-amber-500/40 shadow-sm">
+                PROJECT COMPLETE
+              </span>
+              <h3 class="text-xl lg:text-2xl font-black text-white mt-3 tracking-tight flex items-center justify-center">
+                <span>원조의 땅에서</span>
+                <i class="fa-solid fa-arrow-right-long text-amber-400 mx-2.5"></i>
+                <span class="text-amber-300">미래를 함께할 파트너로!</span>
+              </h3>
+            </div>
+
+          </div>
+
+          <!-- 하단 네비게이션 버튼 -->
+          <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+            <a href="resource.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-stone-300 bg-white text-stone-600 text-xs font-bold hover:bg-stone-50 transition-colors">
+              <i class="fa-solid fa-arrow-left"></i> 이전 (자원)
+            </a>
+
+            <a href="index.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-2xl bg-stone-900 text-white text-xs font-bold hover:bg-stone-800 transition-colors shadow-sm">
+              <i class="fa-solid fa-rotate-right"></i> 처음부터 다시하기
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="w-full px-8 py-3.5 bg-white/60 border-t border-ivory text-center text-xs text-stone-500 font-medium">
+    지리교과교육론 수업시연 | 대륙 전체의 지리적 잠재력과 상호의존성 성찰
+  </footer>
+
+  <!-- 자바스크립트 채점 로직 -->
+  <script>
+    // 띄어쓰기나 오타를 고려한 복수 정답 매칭
+    const answers = {
+      1: ["놀리우드", "nollywood"],
+      2: ["70", "70%", "칠십"],
+      3: ["콩고민주공화국", "민주콩고", "drc", "콩고"]
+    };
+
+    let solved = { 1: false, 2: false, 3: false };
+
+    function playChime(freq = 587.33) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.6);
+      } catch (e) {}
+    }
+
+    function checkAnswer(num) {
+      const input = document.getElementById(`quiz-${num}`);
+      const fb = document.getElementById(`feedback-${num}`);
+      const val = input.value.trim().toLowerCase().replace(/\s+/g, '');
+
+      if (answers[num].some(ans => val.includes(ans))) {
+        solved[num] = true;
+        fb.className = "text-[10px] font-bold mt-1.5 block text-emerald-600 flex items-center gap-1";
+        fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> 정답입니다! 조각이 결합 준비되었습니다.';
+        input.disabled = true;
+        input.classList.add('bg-emerald-50', 'border-emerald-400');
+        playChime(587.33);
+
+        const piece = document.getElementById(`piece-${num}`);
+        if(num === 1) piece.className = "absolute -top-1 -left-4 px-3 py-1 rounded-full bg-emerald-600 border border-emerald-400 text-white text-[11px] font-black shadow-lg scale-105 transition-all";
+        if(num === 2) piece.className = "absolute top-1/2 -right-8 px-3 py-1 rounded-full bg-blue-600 border border-blue-400 text-white text-[11px] font-black shadow-lg scale-105 transition-all";
+        if(num === 3) piece.className = "absolute -bottom-2 left-4 px-3 py-1 rounded-full bg-teal-600 border border-teal-400 text-white text-[11px] font-black shadow-lg scale-105 transition-all";
+
+        updateTotalSolved();
+      } else {
+        fb.className = "text-[10px] font-bold mt-1.5 block text-rose-500 flex items-center gap-1";
+        fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> 다시 한번 생각해 보세요.';
+      }
+    }
+
+    function updateTotalSolved() {
+      const count = Object.values(solved).filter(Boolean).length;
+      document.getElementById('quiz-count').innerText = `${count} / 3 완료`;
+
+      if (count === 3) {
+        triggerFinale();
+      }
+    }
+
+    function triggerFinale() {
+      const map = document.getElementById('final-africa-map');
+      map.setAttribute('class', 'fill-emerald-500 stroke-amber-300 stroke-[3] glow-map transition-all duration-1000');
+      
+      document.getElementById('aurora-bg').style.opacity = '1';
+      document.getElementById('final-slogan').classList.remove('hidden');
+
+      playChime(880);
+      setTimeout(() => playChime(1174.66), 200);
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 90,
+          spread: 75,
+          origin: { y: 0.6 }
+        });
+        setTimeout(() => {
+          confetti({
+            particleCount: 60,
+            angle: 60,
+            spread: 60,
+            origin: { x: 0 }
+          });
+          confetti({
+            particleCount: 60,
+            angle: 120,
+            spread: 60,
+            origin: { x: 1 }
+          });
+        }, 300);
+      }
+    }
+  </script>
+
+</body>
+</html>

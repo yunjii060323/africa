@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 03 - 풍부한 자원 | Mapping Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { font-family: 'Pretendard', sans-serif; }
+    
+    .bg-ivory { background-color: #FBF9F4; }
+    .border-ivory { border-color: #ECE7DE; }
+
+    /* 부품 펄스 및 호버 효과 */
+    .part-chip {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .part-chip:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="bg-ivory text-stone-800 min-h-screen flex flex-col justify-between selection:bg-teal-200 selection:text-teal-950">
+
+  <!-- 상단 헤더: 문화, 인구는 완료 배지 / 자원은 탐구중 상태 -->
+  <header class="w-full px-8 py-4 bg-white/90 backdrop-blur-md border-b border-ivory sticky top-0 z-50 flex justify-between items-center shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="w-10 h-10 rounded-xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-700 shadow-sm hover:bg-teal-100 transition-colors">
+        <i class="fa-solid fa-earth-africa text-xl"></i>
+      </a>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-bold text-teal-800 tracking-wider uppercase bg-teal-100/60 px-2 py-0.5 rounded-md">STAGE 03</span>
+          <span class="text-[11px] text-stone-600 font-medium">교사 C 진행</span>
+        </div>
+        <h1 class="text-base font-extrabold text-stone-900 tracking-tight mt-0.5">풍부한 자원의 조각 찾기</h1>
+      </div>
+    </div>
+
+    <!-- 3대 가치 퍼즐 슬롯 -->
+    <div class="flex items-center gap-2.5 bg-stone-50 px-4 py-2 rounded-2xl border border-stone-200/80 shadow-inner">
+      <span class="text-xs text-stone-600 font-bold mr-1 flex items-center gap-1">
+        <i class="fa-solid fa-puzzle-piece text-emerald-800"></i> 가치 퍼즐
+      </span>
+      
+      <!-- Slot 1: 문화 완료 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-emerald-600 bg-emerald-600 text-white text-xs font-extrabold shadow-sm">
+        <i class="fa-solid fa-circle-check text-[11px] text-emerald-200"></i>
+        <span>1. 문화 다양성</span>
+      </div>
+
+      <!-- Slot 2: 인구 완료 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-blue-600 bg-blue-600 text-white text-xs font-extrabold shadow-sm">
+        <i class="fa-solid fa-circle-check text-[11px] text-blue-200"></i>
+        <span>2. 젊은 인구</span>
+      </div>
+
+      <!-- Slot 3: 자원 탐구중 -->
+      <div id="slot-resource" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-teal-500 bg-teal-50 text-teal-800 text-xs font-bold transition-all duration-300">
+        <i id="slot-icon" class="fa-solid fa-spinner fa-spin text-[10px] text-teal-600"></i>
+        <span id="slot-text">3. 풍부한 자원 (탐구중)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 작업 영역 -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-6 flex flex-col justify-center">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      
+      <!-- 좌측: 실제 스마트폰 디바이스 내부 & 부품별 클릭 인터랙션 -->
+      <div class="lg:col-span-5 bg-white rounded-3xl p-6 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold mb-2">
+            <i class="fa-solid fa-circle-question"></i> 고정관념 깨기
+          </div>
+          <h2 class="text-xl font-black text-stone-900 tracking-tight">
+            "가진 자원이 없어 일방적으로 원조만 받아야 한다?"
+          </h2>
+          <p class="text-stone-500 text-xs mt-1 leading-relaxed">
+            우리가 쓰는 스마트폰 속 부품을 직접 클릭해 아프리카의 자원을 추적해 보세요.
+          </p>
+
+          <!-- ★ 리얼 스마트폰 그래픽 프레임 -->
+          <div class="mt-4 p-4 rounded-[28px] bg-stone-950 border-4 border-stone-800 shadow-2xl relative overflow-hidden flex flex-col items-center">
+            
+            <!-- 스마트폰 상단 스피커 & 노치/다이내믹 아일랜드 -->
+            <div class="w-full flex items-center justify-between px-2 mb-2">
+              <span class="text-[9px] text-stone-500 font-mono">INTERNAL X-RAY VIEW</span>
+              <div class="w-16 h-3 bg-stone-900 rounded-full border border-stone-800 flex items-center justify-end px-1.5">
+                <span class="w-1 h-1 rounded-full bg-teal-400"></span>
+              </div>
+              <span class="text-[9px] text-teal-400 font-semibold animate-pulse">● LIVE</span>
+            </div>
+
+            <!-- 스마트폰 내부 회로 기판 (부품 4종 배치) -->
+            <div class="w-full bg-stone-900/90 rounded-2xl p-3 border border-stone-800/80 grid grid-cols-2 gap-2">
+              
+              <!-- 부품 1: 2차전지 배터리 -->
+              <button onclick="selectComponent('battery')" id="btn-battery" class="part-chip col-span-2 p-3 rounded-xl bg-teal-950/70 border-2 border-teal-400/80 flex items-center justify-between text-left group">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-teal-300">
+                    <i class="fa-solid fa-car-battery text-sm"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs font-black text-white block group-hover:text-teal-300 transition-colors">리튬이온 배터리</span>
+                    <span class="text-[10px] text-stone-400">전력 공급 셀 (클릭)</span>
+                  </div>
+                </div>
+                <span class="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded font-bold border border-teal-400/30">코발트</span>
+              </button>
+
+              <!-- 부품 2: 기판 전도체 (구리) -->
+              <button onclick="selectComponent('wiring')" id="btn-wiring" class="part-chip p-2.5 rounded-xl bg-stone-800/90 border border-stone-700 flex flex-col items-start text-left group hover:border-amber-400">
+                <div class="flex items-center gap-1.5 mb-1 text-stone-400 group-hover:text-amber-400">
+                  <i class="fa-solid fa-bolt text-xs"></i>
+                  <span class="text-[11px] font-bold text-white">기판 회로/전선</span>
+                </div>
+                <span class="text-[9px] text-stone-400">고전도성 배선</span>
+                <span class="text-[9px] text-amber-300 font-semibold mt-1">구리 (Copper)</span>
+              </button>
+
+              <!-- 부품 3: 카메라 & 단자 (백금/금) -->
+              <button onclick="selectComponent('camera')" id="btn-camera" class="part-chip p-2.5 rounded-xl bg-stone-800/90 border border-stone-700 flex flex-col items-start text-left group hover:border-blue-400">
+                <div class="flex items-center gap-1.5 mb-1 text-stone-400 group-hover:text-blue-400">
+                  <i class="fa-solid fa-camera text-xs"></i>
+                  <span class="text-[11px] font-bold text-white">카메라/접점</span>
+                </div>
+                <span class="text-[9px] text-stone-400">초정밀 센서 코팅</span>
+                <span class="text-[9px] text-blue-300 font-semibold mt-1">백금 / 금</span>
+              </button>
+
+              <!-- 부품 4: 초소형 콘덴서 (콜탄/탄탈럼) -->
+              <button onclick="selectComponent('coltan')" id="btn-coltan" class="part-chip col-span-2 p-2.5 rounded-xl bg-stone-800/90 border border-stone-700 flex items-center justify-between text-left group hover:border-emerald-400">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-microchip text-xs text-stone-400 group-hover:text-emerald-400"></i>
+                  <div>
+                    <span class="text-[11px] font-bold text-white block">초소형 커패시터</span>
+                    <span class="text-[9px] text-stone-400">전류 안정화 부품</span>
+                  </div>
+                </div>
+                <span class="text-[9px] text-emerald-300 font-semibold">콜탄 (탄탈럼)</span>
+              </button>
+
+            </div>
+
+            <!-- 부품 클릭 시 실시간 반응형 상세 팝업 박스 -->
+            <div id="detail-card" class="w-full mt-3 p-3.5 rounded-2xl bg-teal-900/60 border border-teal-400/50 text-white shadow-lg transition-all duration-300">
+              <div class="flex items-center justify-between mb-1.5">
+                <span id="detail-title" class="text-xs font-black text-amber-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-gem text-amber-400"></i> 코발트(Cobalt) 세계 1위
+                </span>
+                <span id="detail-country" class="text-[10px] bg-teal-800 px-2.5 py-0.5 rounded-full font-bold text-teal-100 border border-teal-500/40">
+                  콩고민주공화국
+                </span>
+              </div>
+              <p id="detail-desc" class="text-[11px] text-stone-200 leading-relaxed">
+                전 세계 스마트폰과 전기차 배터리에 들어가는 코발트의 <strong class="text-white underline decoration-amber-400">약 70%</strong>가 콩고민주공화국에서 생산됩니다.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- 광물 공급망 사진 위치 박스 (세로 대형) -->
+          <div class="mt-3.5 w-full h-36 rounded-2xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100 relative flex items-center justify-center">
+            <img 
+              src="images/resource_minerals.jpg" 
+              alt="아프리카 주요 자원 분포 지도" 
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            >
+            <div class="hidden w-full h-full bg-gradient-to-r from-emerald-100/70 to-blue-100/70 flex flex-col items-center justify-center text-stone-500 gap-1.5 p-4 text-center">
+              <i class="fa-solid fa-gem text-2xl text-teal-700/60"></i>
+              <span class="text-xs font-semibold text-stone-600">images/resource_minerals.jpg 사진 위치</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-3 pt-2.5 border-t border-stone-100 text-[11px] text-stone-500 flex items-center justify-between">
+          <span class="text-stone-400">전통 자원 공급망</span>
+          <span class="text-teal-700 font-bold">석유, 구리, 다이아몬드, 코발트</span>
+        </div>
+      </div>
+
+      <!-- 우측: [탐구 2] 사하라 사막 태양광 & 미래 청정에너지 허브 -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-6 flex flex-col justify-between border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold mb-2">
+            <i class="fa-solid fa-solar-panel text-teal-700"></i> 미래 청정에너지 잠재력
+          </div>
+          <h2 class="text-xl font-black text-stone-900 tracking-tight">
+            사하라의 무한한 햇빛, 지구촌 탄소중립의 열쇠가 되다
+          </h2>
+          <p class="text-stone-500 text-xs mt-1 leading-relaxed">
+            불모지로 여겨졌던 사하라 사막이 전 세계 청정에너지 지형을 바꾸고 있습니다.
+          </p>
+
+          <!-- 사하라 태양광 사진 위치 박스 (세로 대형) -->
+          <div class="mt-3.5 w-full h-40 rounded-2xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100 relative flex items-center justify-center">
+            <img 
+              src="images/resource_sahara_solar.jpg" 
+              alt="사하라 사막 태양광 일사량 지도" 
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            >
+            <div class="hidden w-full h-full bg-gradient-to-r from-emerald-100/70 to-blue-100/70 flex flex-col items-center justify-center text-stone-500 gap-1.5 p-4 text-center">
+              <i class="fa-solid fa-sun text-2xl text-amber-500/80"></i>
+              <span class="text-xs font-semibold text-stone-600">images/resource_sahara_solar.jpg 사진 위치</span>
+            </div>
+          </div>
+
+          <!-- 사하라 태양광 일사량 및 친환경 잠재력 비교 카드 2단 -->
+          <div class="grid grid-cols-2 gap-3 mt-3.5">
+            <div class="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200 flex flex-col">
+              <span class="text-[10px] font-extrabold text-amber-800 flex items-center gap-1">
+                <i class="fa-solid fa-sun text-amber-600"></i> 압도적인 일사량
+              </span>
+              <span class="text-xs font-bold text-stone-900 mt-1">세계 최고 수준의 태양 에너지</span>
+              <p class="text-[10px] text-stone-600 mt-1 leading-tight">
+                사하라 사막의 아주 작은 면적만으로도 유럽 대륙 전체의 전력을 공급할 수 있는 잠재력을 지닙니다.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-teal-50/70 border border-teal-200 flex flex-col">
+              <span class="text-[10px] font-extrabold text-teal-800 flex items-center gap-1">
+                <i class="fa-solid fa-handshake-angle text-teal-600"></i> 글로벌 에너지 파트너
+              </span>
+              <span class="text-xs font-bold text-stone-900 mt-1">그린 수소 및 해저 전력망</span>
+              <p class="text-[10px] text-stone-600 mt-1 leading-tight">
+                유럽과 해저 케이블을 연결하여 청정 전력을 수출하는 대규모 재생에너지 프로젝트가 진행 중입니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- 결론 요약 박스 -->
+          <div class="mt-3.5 p-3.5 rounded-2xl bg-stone-50 border border-stone-200 text-xs text-stone-700 leading-relaxed">
+            <strong class="text-stone-900 font-bold">💡 지리적 가치 도출:</strong> 
+            아프리카는 도움만을 기다리는 빈곤한 땅이 아니라, 첨단 IT 기기의 핵심 광물과 전 지구적 기후위기를 해결할 <strong class="text-teal-800 font-bold underline decoration-teal-300">‘미래를 함께할 필수 파트너’</strong>입니다.
+          </div>
+        </div>
+
+        <!-- 하단: 마지막 조각 획득 및 최종 완성 페이지 이동 영역 -->
+        <div class="mt-4 pt-2.5 border-t border-stone-100 flex items-center justify-between">
+          <a href="people.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-stone-300 bg-white text-stone-600 text-xs font-bold hover:bg-stone-50 transition-colors">
+            <i class="fa-solid fa-arrow-left"></i> 이전 (인구)
+          </a>
+
+          <!-- 조각 획득 버튼 -->
+          <div class="flex items-center gap-3">
+            <button id="btn-claim-resource" onclick="claimResourcePiece()" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-teal-700 text-white font-extrabold text-sm hover:bg-teal-800 shadow-md shadow-teal-800/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+              <i class="fa-solid fa-puzzle-piece"></i>
+              <span>[풍부한 자원] 조각 획득하기</span>
+            </button>
+            
+            <a id="btn-next-final" href="final.html" class="hidden inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-emerald-600 text-white font-extrabold text-sm hover:opacity-95 shadow-lg shadow-amber-500/20 transition-all animate-bounce">
+              <span>🎉 전체 지도 완성하러 가기</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="w-full px-8 py-3 bg-white/60 border-t border-ivory text-center text-xs text-stone-500 font-medium">
+    지리교과교육론 수업시연 | Stage 03: 풍부한 천연자원과 미래 청정에너지 잠재력
+  </footer>
+
+  <!-- 자바스크립트: 스마트폰 부품별 데이터 전환 로직 -->
+  <script>
+    const partData = {
+      battery: {
+        title: '<i class="fa-solid fa-gem text-amber-400"></i> 코발트(Cobalt) 세계 1위',
+        country: '콩고민주공화국',
+        desc: '스마트폰 및 전기차 배터리의 과열을 막는 핵심 원료인 코발트의 <strong class="text-white underline decoration-amber-400">약 70%</strong>가 콩고민주공화국에서 생산됩니다.'
+      },
+      wiring: {
+        title: '<i class="fa-solid fa-bolt text-amber-400"></i> 구리(Copper) 아프리카 1위',
+        country: '잠비아 · 카탕가 벨트',
+        desc: '전자기기의 고속 충전 케이블과 메인보드 전송 회로의 핵심 광물로, 잠비아-콩고 국경 일대의 구리 벨트(Copperbelt)가 전 세계 산업을 지탱합니다.'
+      },
+      camera: {
+        title: '<i class="fa-solid fa-camera text-blue-300"></i> 백금(Platinum) 세계 1위',
+        country: '남아프리카공화국',
+        desc: '스마트폰 카메라 센서와 고정밀 칩 단자에 필수적인 백금족 원소는 <strong class="text-white">남아프리카공화국이 세계 매장량의 약 80%</strong>를 독점하고 있습니다.'
+      },
+      coltan: {
+        title: '<i class="fa-solid fa-microchip text-emerald-400"></i> 콜탄(탄탈럼) 세계 1위',
+        country: '콩고민주공화국 · 르완다',
+        desc: '스마트폰을 얇게 만들 수 있는 비결인 초소형 콘덴서(MLCC 등)의 핵심 소재로, 아프리카의 콜탄 없이는 현대 스마트폰 생산이 불가능합니다.'
+      }
+    };
+
+    function selectComponent(type) {
+      const data = partData[type];
+      const card = document.getElementById('detail-card');
+      
+      // 깜빡임 애니메이션 효과
+      card.style.opacity = '0.5';
+      setTimeout(() => {
+        document.getElementById('detail-title').innerHTML = data.title;
+        document.getElementById('detail-country').innerText = data.country;
+        document.getElementById('detail-desc').innerHTML = data.desc;
+        card.style.opacity = '1';
+      }, 150);
+
+      // 활성화 버튼 테두리 강조 리셋
+      ['battery', 'wiring', 'camera', 'coltan'].forEach(k => {
+        const btn = document.getElementById(`btn-${k}`);
+        if(k === type) {
+          btn.classList.add('border-teal-400', 'bg-teal-950/70');
+          btn.classList.remove('border-stone-700', 'bg-stone-800/90');
+        } else {
+          btn.classList.remove('border-teal-400', 'bg-teal-950/70');
+          btn.classList.add('border-stone-700', 'bg-stone-800/90');
+        }
+      });
+    }
+
+    function claimResourcePiece() {
+      const slot = document.getElementById('slot-resource');
+      const icon = document.getElementById('slot-icon');
+      const text = document.getElementById('slot-text');
+      const btnClaim = document.getElementById('btn-claim-resource');
+      const btnNext = document.getElementById('btn-next-final');
+
+      slot.className = "flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-teal-600 bg-teal-600 text-white text-xs font-extrabold shadow-sm transition-all duration-300 transform scale-105";
+      icon.className = "fa-solid fa-circle-check text-[11px] text-teal-200";
+      text.innerText = "3. 풍부한 자원 (완료)";
+
+      btnClaim.classList.add('hidden');
+      btnNext.classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
