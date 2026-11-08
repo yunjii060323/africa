@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 03-2 - 사하라의 청정에너지와 미래 잠재력 | Mapping Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { font-family: 'Pretendard', sans-serif; }
+    
+    .bg-ivory { background-color: #FBF9F4; }
+    .border-ivory { border-color: #ECE7DE; }
+
+    /* 활성화된 자원 선택 버튼 스타일 */
+    .resource-btn.active {
+      border-color: #0d9488;
+      background-color: #f0fdfa;
+      box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.4);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body class="bg-ivory text-stone-800 h-screen flex flex-col justify-between selection:bg-teal-200 selection:text-teal-950 overflow-x-hidden">
+
+  <!-- 상단 헤더: 가치 퍼즐 슬롯 -->
+  <header class="w-full px-8 py-3 bg-white/90 backdrop-blur-md border-b border-ivory sticky top-0 z-50 flex justify-between items-center shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex-shrink-0">
+    <div class="flex items-center gap-3">
+      <a href="resource1.html" class="w-9 h-9 rounded-xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-700 shadow-sm hover:bg-teal-100 transition-colors">
+        <i class="fa-solid fa-earth-africa text-lg"></i>
+      </a>
+      <div>
+        <span class="text-[10px] font-bold text-teal-800 tracking-wider uppercase bg-teal-100/60 px-2 py-0.5 rounded-md">STAGE 03 - 파트 2</span>
+        <h1 class="text-sm font-extrabold text-stone-900 tracking-tight mt-0.5">풍부한 자원의 조각 찾기 (2)</h1>
+      </div>
+    </div>
+
+    <!-- 3대 가치 퍼즐 슬롯 -->
+    <div class="flex items-center gap-2 bg-stone-50 px-3.5 py-1.5 rounded-2xl border border-stone-200/80 shadow-inner">
+      <span class="text-xs text-stone-600 font-bold mr-1 flex items-center gap-1">
+        <i class="fa-solid fa-puzzle-piece text-emerald-800"></i> 가치 퍼즐
+      </span>
+      
+      <!-- Slot 1: 문화 완료 -->
+      <div class="flex items-center gap-1.5 px-3 py-1 rounded-xl border border-emerald-600 bg-emerald-600 text-white text-xs font-extrabold shadow-sm">
+        <i class="fa-solid fa-circle-check text-[10px] text-emerald-200"></i>
+        <span>1. 문화 다양성</span>
+      </div>
+
+      <!-- Slot 2: 인구 완료 -->
+      <div class="flex items-center gap-1.5 px-3 py-1 rounded-xl border border-blue-600 bg-blue-600 text-white text-xs font-extrabold shadow-sm">
+        <i class="fa-solid fa-circle-check text-[10px] text-blue-200"></i>
+        <span>2. 젊은 인구</span>
+      </div>
+
+      <!-- Slot 3: 자원 (마지막 획득 대기) -->
+      <div id="slot-resource" class="flex items-center gap-1.5 px-3 py-1 rounded-xl border border-dashed border-teal-500 bg-teal-50 text-teal-800 text-xs font-bold transition-all duration-300">
+        <i id="slot-icon" class="fa-solid fa-spinner fa-spin text-[10px] text-teal-600"></i>
+        <span id="slot-text">3. 풍부한 자원 (탐구중)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 작업 영역 -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-2.5 lg:py-3.5 flex flex-col justify-between overflow-y-auto">
+    
+    <!-- 상단 안내 & 지리적 가치 도출 배너 -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-2 flex-shrink-0">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-[10px] font-bold mb-0.5">
+          <i class="fa-solid fa-circle-question"></i> 고정관념 깨기
+        </div>
+        <h2 class="text-lg lg:text-xl font-black text-stone-900 tracking-tight">
+          "아프리카의 자원은 땅속에만 있을까?"
+        </h2>
+        <p class="text-stone-500 text-[11px]">
+          사하라의 풍부한 햇빛을 이용하여 태양광에너지를 만듭니다.
+        </p>
+      </div>
+
+      <!-- 상단 지리적 가치 도출 배너 -->
+      <div class="p-2.5 px-3.5 rounded-2xl bg-teal-50/90 border border-teal-200 text-xs text-stone-800 max-w-lg shadow-sm">
+        <div class="flex items-center gap-1.5 font-black text-teal-950 mb-0.5 text-[11px]">
+          <i class="fa-solid fa-lightbulb text-teal-600"></i>
+          <span>지리적 가치 도출</span>
+        </div>
+        <p class="text-[11px] text-stone-700 leading-snug">
+          아프리카는 화석연료를 넘어선 무한한 <strong class="text-teal-900 font-extrabold underline decoration-teal-400">‘지구촌 탄소중립의 청정에너지 허브’</strong>이며, 세계와 연결된 동등한 에너지 파트너입니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- 좌우 2단 카드 그리드 (<태양에너지 사진-설명> vs <해저 케이블 사진-설명>) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5 items-stretch my-auto">
+      
+      <!-- [좌측 컬럼]: 1. 태양에너지 사진 + 설명 -->
+      <div class="bg-white rounded-3xl p-4 lg:p-5 border border-ivory shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2 px-1">
+            <span class="text-xs font-black text-amber-900 flex items-center gap-1.5">
+              <i class="fa-solid fa-sun text-amber-500"></i> 사하라의 무한한 태양광 발전
+            </span>
+            <span class="text-[10px] text-stone-400 font-medium">재생에너지의 보고</span>
+          </div>
+
+          <!-- 태양에너지 사진 박스 -->
+          <div class="w-full h-36 xl:h-40 rounded-2xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100 relative group flex items-center justify-center">
+            <img 
+              src="images/res_solar_sahara.jpg" 
+              alt="사하라 태양광 발전소" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            >
+            <div class="hidden w-full h-full bg-gradient-to-br from-amber-50 to-orange-100 flex flex-col items-center justify-center text-stone-500 gap-1.5 p-4 text-center">
+              <i class="fa-solid fa-solar-panel text-3xl text-amber-500/70"></i>
+              <span class="text-xs font-bold text-stone-700">images/res_solar_sahara.jpg 사진 위치</span>
+              <span class="text-[10px] text-stone-400">사하라 사막 초대형 태양광 집열 및 패널 단지</span>
+            </div>
+            
+            <div class="absolute top-2 right-2 bg-stone-900/80 backdrop-blur-md text-amber-300 text-[9px] font-mono px-2 py-0.5 rounded-md border border-stone-700/60">
+              images/res_solar_sahara.jpg
+            </div>
+          </div>
+
+          <!-- 설명 박스 및 Stanford 출처 -->
+          <div class="mt-2.5 p-3 rounded-2xl bg-amber-50/50 border border-amber-200 text-xs text-stone-700 space-y-1">
+            <div class="flex items-center gap-1.5 font-bold text-amber-950 text-[11px]">
+              <i class="fa-solid fa-bolt text-amber-600"></i>
+              <span>세계 최대 일사량을 품은 사하라의 잠재력</span>
+            </div>
+            <p class="text-[11px] text-stone-600 leading-relaxed">
+              사하라 사막은 전 세계에서 일조량이 가장 풍부한 곳 중 하나입니다. 사하라 사막의 아주 작은 면적만으로도 <strong class="text-amber-950 font-bold">유럽 대륙 전체의 전력을 공급할 수 있는 잠재력</strong>을 지닙니다.
+            </p>
+            <div class="pt-1 border-t border-amber-200/60 text-[10px] text-stone-500 flex items-center gap-1">
+              <i class="fa-solid fa-building-columns text-stone-400"></i>
+              <span>자료 출처: <strong>Stanford University</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2 text-[10px] text-stone-400 flex justify-between px-1">
+          <span>무한한 천연 재생 자원</span>
+          <span class="text-amber-700 font-bold">글로벌 탄소중립 핵심 축</span>
+        </div>
+      </div>
+
+      <!-- [우측 컬럼]: 2. 해저 케이블 사진 + 설명 -->
+      <div class="bg-white rounded-3xl p-4 lg:p-5 border border-ivory shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2 px-1">
+            <span class="text-xs font-black text-teal-900 flex items-center gap-1.5">
+              <i class="fa-solid fa-water text-teal-600"></i> 지중해 초고압 해저 전력망
+            </span>
+            <span class="text-[10px] text-stone-400 font-medium">대륙 간 에너지 연결망</span>
+          </div>
+
+          <!-- 해저 케이블 사진 박스 -->
+          <div class="w-full h-36 xl:h-40 rounded-2xl overflow-hidden border border-stone-200 shadow-sm bg-stone-100 relative group flex items-center justify-center">
+            <img 
+              src="images/res_submarine_cable.jpg" 
+              alt="지중해 해저 케이블 전력망" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            >
+            <div class="hidden w-full h-full bg-gradient-to-br from-teal-50 to-cyan-100 flex flex-col items-center justify-center text-stone-500 gap-1.5 p-4 text-center">
+              <i class="fa-solid fa-network-wired text-3xl text-teal-600/70"></i>
+              <span class="text-xs font-bold text-stone-700">images/res_submarine_cable.jpg 사진 위치</span>
+              <span class="text-[10px] text-stone-400">북아프리카-유럽 연결 초고압 직류(HVDC) 해저 케이블</span>
+            </div>
+
+            <div class="absolute top-2 right-2 bg-stone-900/80 backdrop-blur-md text-teal-300 text-[9px] font-mono px-2 py-0.5 rounded-md border border-stone-700/60">
+              images/res_submarine_cable.jpg
+            </div>
+          </div>
+
+          <!-- 설명 박스 -->
+          <div class="mt-2.5 p-3 rounded-2xl bg-teal-50/50 border border-teal-200 text-xs text-stone-700 space-y-1">
+            <div class="flex items-center gap-1.5 font-bold text-teal-950 text-[11px]">
+              <i class="fa-solid fa-globe text-teal-600"></i>
+              <span>지중해를 건너는 녹색 전력 고속도로</span>
+            </div>
+            <p class="text-[11px] text-stone-600 leading-relaxed">
+              사하라에서 생산된 깨끗한 전력은 초고압 해저 케이블을 통해 지중해를 건너 유럽으로 수출됩니다. 이제 아프리카는 도움을 받는 곳이 아니라 <strong class="text-teal-950 font-bold">유럽의 에너지 전환을 이끄는 핵심 파트너</strong>로 도약하고 있습니다.
+            </p>
+            <div class="pt-1 border-t border-teal-200/60 text-[10px] text-stone-500 flex items-center gap-1">
+              <i class="fa-solid fa-link text-stone-400"></i>
+              <span>유럽-아프리카 초고압 직류 송전망(HVDC) 프로젝트 연계</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2 text-[10px] text-stone-400 flex justify-between px-1">
+          <span>대륙 간 상호의존성</span>
+          <span class="text-teal-700 font-bold">대등한 그린에너지 파트너십</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 하단: 학생 참여 활동 (5대 자원 선택 + 이유 직접 작성) & 퍼즐 조각 획득 -->
+    <div class="mt-2.5 p-3 bg-white rounded-2xl border border-ivory shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 flex-shrink-0">
+      
+      <!-- 학생 활동 입력 영역 -->
+      <div class="w-full md:max-w-2xl">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-black text-stone-900 flex items-center gap-1.5">
+            <i class="fa-solid fa-gem text-teal-600"></i> 미래 잠재력 탐구: 가장 주목받을 아프리카의 자원은?
+          </span>
+          <span id="save-status-resource" class="text-[10px] text-emerald-600 font-bold hidden">등록 완료!</span>
+        </div>
+
+        <!-- 5대 자원 선택 버튼 (클릭 시 선택만 되고 이유는 채워지지 않음) -->
+        <div class="grid grid-cols-5 gap-1.5 mb-1.5">
+          <button 
+            type="button" 
+            onclick="selectResource('구리', this)"
+            class="resource-btn p-1.5 rounded-xl border border-stone-200 bg-stone-50 hover:bg-teal-50 hover:border-teal-400 text-center transition-all text-xs font-extrabold text-stone-700 flex flex-col items-center"
+          >
+            <span class="text-[9px] text-stone-400 font-medium">전선·회로</span>
+            <span>구리</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="selectResource('금', this)"
+            class="resource-btn p-1.5 rounded-xl border border-stone-200 bg-stone-50 hover:bg-teal-50 hover:border-teal-400 text-center transition-all text-xs font-extrabold text-stone-700 flex flex-col items-center"
+          >
+            <span class="text-[9px] text-stone-400 font-medium">카메라 접점</span>
+            <span>금</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="selectResource('코발트', this)"
+            class="resource-btn p-1.5 rounded-xl border border-stone-200 bg-stone-50 hover:bg-teal-50 hover:border-teal-400 text-center transition-all text-xs font-extrabold text-stone-700 flex flex-col items-center"
+          >
+            <span class="text-[9px] text-stone-400 font-medium">배터리 핵심</span>
+            <span>코발트</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="selectResource('콜탄', this)"
+            class="resource-btn p-1.5 rounded-xl border border-stone-200 bg-stone-50 hover:bg-teal-50 hover:border-teal-400 text-center transition-all text-xs font-extrabold text-stone-700 flex flex-col items-center"
+          >
+            <span class="text-[9px] text-stone-400 font-medium">초소형 칩</span>
+            <span>콜탄</span>
+          </button>
+
+          <button 
+            type="button" 
+            onclick="selectResource('태양에너지', this)"
+            class="resource-btn p-1.5 rounded-xl border border-stone-200 bg-stone-50 hover:bg-teal-50 hover:border-teal-400 text-center transition-all text-xs font-extrabold text-stone-700 flex flex-col items-center"
+          >
+            <span class="text-[9px] text-amber-500 font-bold">사하라 청정</span>
+            <span>태양에너지</span>
+          </button>
+        </div>
+
+        <!-- 이유 직접 작성 창 & 등록 버튼 -->
+        <div class="flex items-center gap-2">
+          <div class="flex-1">
+            <input 
+              type="text" 
+              id="resource-reason" 
+              placeholder="위의 5가지 자원 중 하나를 고른 후, 왜 가장 주목받을 것 같은지 이유를 직접 적어보세요!" 
+              class="w-full px-3 py-1.5 rounded-xl border border-stone-300 text-xs text-stone-800 bg-white focus:outline-none focus:border-teal-500 shadow-inner font-medium placeholder:text-[11px]"
+            >
+          </div>
+          <button 
+            onclick="saveResourceData()" 
+            class="px-3.5 py-1.5 rounded-xl bg-teal-700 text-white font-extrabold text-xs hover:bg-teal-800 transition-colors shadow-sm flex-shrink-0 flex items-center gap-1"
+          >
+            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+            <span>등록</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 이전 / 조각 획득 / Final 이동 네비게이션 -->
+      <div class="flex items-center gap-2 flex-shrink-0 w-full md:w-auto justify-end">
+        <a href="resource1.html" class="inline-flex items-center gap-1 px-3 py-2 rounded-xl border border-stone-300 bg-white text-stone-600 text-xs font-bold hover:bg-stone-50 transition-colors">
+          <i class="fa-solid fa-arrow-left"></i> 이전 (광물1)
+        </a>
+
+        <!-- 마지막 퍼즐 조각 획득 버튼 -->
+        <button 
+          id="btn-claim-resource" 
+          onclick="claimResourcePiece()" 
+          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-700 text-white font-extrabold text-xs hover:bg-teal-800 shadow-md shadow-teal-700/20 transition-all transform hover:-translate-y-0.5"
+        >
+          <i class="fa-solid fa-puzzle-piece"></i>
+          <span>[풍부한 자원] 조각 획득</span>
+        </button>
+
+        <!-- Final로 이동 버튼 -->
+        <button 
+          id="btn-next-final" 
+          onclick="goToFinal()" 
+          class="hidden inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs hover:from-emerald-700 hover:to-teal-700 shadow-md shadow-emerald-600/20 transition-all animate-bounce"
+        >
+          <span>최종: 가치 지도 완성 (Final)</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="w-full px-8 py-2 bg-white/60 border-t border-ivory text-center text-[11px] text-stone-500 font-medium flex-shrink-0">
+    지리교과교육론 수업시연 | Stage 03-2: 사하라 태양광과 지중해 해저 전력망으로 보는 미래 에너지 파트너십
+  </footer>
+
+  <!-- 활동 데이터 저장 및 퍼즐 조각 완료 스크립트 -->
+  <script>
+    let currentSelectedResource = '';
+
+    // 자원 버튼 클릭 시 선택 상태만 활성화 (이유는 비워둠)
+    function selectResource(resName, btnElement) {
+      currentSelectedResource = resName;
+      
+      document.querySelectorAll('.resource-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      const reasonInput = document.getElementById('resource-reason');
+      reasonInput.placeholder = `[${resName}]이(가) 가장 주목받을 것 같은 이유를 직접 적어보세요!`;
+      reasonInput.focus();
+    }
+
+    // 학생 활동 데이터 저장 (final.html 연동을 위한 독립 키 분리)
+    function saveResourceData() {
+      if (!currentSelectedResource) {
+        alert('먼저 5가지 자원(구리, 금, 코발트, 콜탄, 태양에너지) 중 하나를 선택해 주세요!');
+        return;
+      }
+
+      const reason = document.getElementById('resource-reason').value.trim();
+      if (!reason) {
+        alert('선택하신 자원이 왜 가장 주목받을 것 같은지 이유를 작성해 주세요!');
+        document.getElementById('resource-reason').focus();
+        return;
+      }
+
+      // 1. 선택 자원명 저장
+      localStorage.setItem('student_resource_choice', currentSelectedResource);
+      // 2. 학생이 직접 쓴 이유 저장
+      localStorage.setItem('student_resource_reason', reason);
+
+      const st = document.getElementById('save-status-resource');
+      st.classList.remove('hidden');
+      setTimeout(() => st.classList.add('hidden'), 2000);
+    }
+
+    // 이전 저장값 복원
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedChoice = localStorage.getItem('student_resource_choice');
+      const savedReason = localStorage.getItem('student_resource_reason');
+
+      if (savedChoice) {
+        currentSelectedResource = savedChoice;
+        document.querySelectorAll('.resource-btn').forEach(btn => {
+          if (btn.innerText.includes(savedChoice)) {
+            btn.classList.add('active');
+          }
+        });
+      }
+
+      if (savedReason) {
+        document.getElementById('resource-reason').value = savedReason;
+      }
+    });
+
+    // 3번째 자원 퍼즐 획득 로직
+    function claimResourcePiece() {
+      const slot = document.getElementById('slot-resource');
+      const icon = document.getElementById('slot-icon');
+      const text = document.getElementById('slot-text');
+      const btnClaim = document.getElementById('btn-claim-resource');
+      const btnNext = document.getElementById('btn-next-final');
+
+      slot.className = "flex items-center gap-1.5 px-3 py-1 rounded-xl border border-teal-600 bg-teal-600 text-white text-xs font-extrabold shadow-sm transition-all duration-300 transform scale-105";
+      icon.className = "fa-solid fa-circle-check text-[10px] text-teal-200";
+      text.innerText = "3. 풍부한 자원 (완료)";
+
+      btnClaim.classList.add('hidden');
+      btnNext.classList.remove('hidden');
+    }
+
+    function goToFinal() {
+      const reason = document.getElementById('resource-reason').value.trim();
+      if (currentSelectedResource && reason) {
+        localStorage.setItem('student_resource_choice', currentSelectedResource);
+        localStorage.setItem('student_resource_reason', reason);
+      }
+      location.href = 'final.html';
+    }
+  </script>
+
+</body>
+</html>

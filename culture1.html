@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 01-1 - 현대 문화 다양성 | Mapping Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { font-family: 'Pretendard', sans-serif; }
+    
+    .bg-ivory { background-color: #FBF9F4; }
+    .border-ivory { border-color: #ECE7DE; }
+  </style>
+</head>
+<body class="bg-ivory text-stone-800 min-h-screen flex flex-col justify-between selection:bg-emerald-200 selection:text-emerald-950">
+
+  <!-- 상단 헤더: 가치 퍼즐 슬롯 -->
+  <header class="w-full px-8 py-4 bg-white/90 backdrop-blur-md border-b border-ivory sticky top-0 z-50 flex justify-between items-center shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+    <div class="flex items-center gap-3">
+      <a href="subject.html" class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-sm hover:bg-emerald-100 transition-colors">
+        <i class="fa-solid fa-earth-africa text-xl"></i>
+      </a>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-bold text-emerald-800 tracking-wider uppercase bg-emerald-100/60 px-2 py-0.5 rounded-md">STAGE 01 - 파트 1</span>
+          <span class="text-[11px] text-stone-500 font-medium">현대 대중문화와 소프트파워</span>
+        </div>
+        <h1 class="text-base font-extrabold text-stone-900 tracking-tight mt-0.5">문화 다양성의 조각 찾기 (1)</h1>
+      </div>
+    </div>
+
+    <!-- 3대 가치 퍼즐 슬롯 -->
+    <div class="flex items-center gap-2.5 bg-stone-50 px-4 py-2 rounded-2xl border border-stone-200/80 shadow-inner">
+      <span class="text-xs text-stone-600 font-bold mr-1 flex items-center gap-1">
+        <i class="fa-solid fa-puzzle-piece text-emerald-800"></i> 가치 퍼즐
+      </span>
+      
+      <!-- Slot 1: 문화 (탐구 중) -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-emerald-500 bg-emerald-50 text-emerald-800 text-xs font-bold transition-all duration-300">
+        <i class="fa-solid fa-spinner fa-spin text-[10px] text-emerald-600"></i>
+        <span>1. 문화 다양성 (탐구중)</span>
+      </div>
+
+      <!-- Slot 2: 인구 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-stone-300 bg-white text-stone-500 text-xs font-semibold">
+        <i class="fa-solid fa-lock text-[10px] text-stone-400"></i>
+        <span>2. 젊은 인구</span>
+      </div>
+
+      <!-- Slot 3: 자원 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-stone-300 bg-white text-stone-500 text-xs font-semibold">
+        <i class="fa-solid fa-lock text-[10px] text-stone-400"></i>
+        <span>3. 풍부한 자원</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 작업 영역 -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-6 flex flex-col justify-center">
+    
+    <!-- 상단 안내 타이틀 -->
+    <div class="mb-5">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold mb-2">
+        <i class="fa-solid fa-circle-question"></i> 고정관념 깨기
+      </div>
+      <h2 class="text-2xl font-black text-stone-900 tracking-tight">
+        "아직도 열대우림에서 동물들과 함께 부족생활을 하며 살 것이다?"
+      </h2>
+      <p class="text-stone-500 text-xs mt-1">
+        아프리카는 지금 전 세계 대중문화 트렌드를 주도하고 있습니다. 영화와 음악을 통해 살아 숨 쉬는 현대 문화를 확인해 보세요.
+      </p>
+    </div>
+
+    <!-- 문화 3단 카드 레이아웃 -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+      
+      <!-- 카드 1: 놀리우드 (Nollywood) - 바로 보이기 적용 -->
+      <div class="bg-white rounded-3xl p-6 border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[11px] font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+              영화 산업
+            </span>
+            <span class="text-[11px] text-stone-400">나이지리아</span>
+          </div>
+          <h3 class="text-lg font-black text-stone-900 tracking-tight">나이지리아 '놀리우드'</h3>
+          <p class="text-stone-500 text-xs mt-1">한 해 2,500편 이상의 영화를 제작하는 글로벌 영화 강국</p>
+
+          <!-- 사진 박스 (블라인드 제거, 기본 노출) -->
+          <div class="mt-4 relative rounded-2xl overflow-hidden border border-stone-200 bg-stone-100 h-48 flex items-center justify-center group">
+            <img 
+              id="img-nollywood"
+              src="images/culture_nollywood.jpg" 
+              alt="놀리우드 영화 현장" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.style.display='none'; document.getElementById('ph-nollywood').classList.remove('hidden');"
+            >
+            <div id="ph-nollywood" class="hidden w-full h-full bg-gradient-to-r from-emerald-100/70 to-blue-100/70 flex flex-col items-center justify-center text-stone-500 gap-1.5 p-4 text-center">
+              <i class="fa-regular fa-image text-2xl text-emerald-700/60"></i>
+              <span class="text-xs font-semibold text-stone-700">images/culture_nollywood.jpg 사진 위치</span>
+            </div>
+          </div>
+
+          <!-- 상세 설명 (기본 노출) -->
+          <div class="mt-3.5 p-3 rounded-2xl bg-stone-50 border border-stone-200/80 text-xs text-stone-700 leading-relaxed">
+            할리우드, 볼리우드와 함께 세계 3대 영화 산업으로 불립니다. 아프리카인의 시선으로 현대적 도시 생활과 사회적 이슈를 담아내며 전 세계 넷플릭스 등 글로벌 플랫폼을 강타하고 있습니다.
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-stone-100 text-[11px] text-stone-400 flex justify-between">
+          <span>제작 규모 세계 2위</span>
+          <span class="text-emerald-700 font-bold">소프트파워 선도</span>
+        </div>
+      </div>
+
+      <!-- 카드 2: 아프로비츠 (Afrobeats) - 타일라(Tyla) 반영 -->
+      <div class="bg-white rounded-3xl p-6 border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[11px] font-extrabold text-blue-800 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
+              음악 & 글로벌 팝
+            </span>
+            <span class="text-[11px] text-stone-400">서아프리카 발원</span>
+          </div>
+          <h3 class="text-lg font-black text-stone-900 tracking-tight">글로벌 열풍 '아프로비츠'</h3>
+          <p class="text-stone-500 text-xs mt-1">빌보드와 그래미 어워즈를 점령한 아프리카 팝 음악</p>
+
+          <!-- 사진 박스 -->
+          <div class="mt-4 relative rounded-2xl overflow-hidden border border-stone-200 bg-stone-100 h-48 flex items-center justify-center group">
+            <img 
+              src="images/culture_afrobeats.jpg" 
+              alt="아프로비츠 공연 현장" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            >
+            <div class="hidden w-full h-full bg-gradient-to-r from-blue-100/70 to-indigo-100/70 flex flex-col items-center justify-center text-stone-500 gap-1.5 p-4 text-center">
+              <i class="fa-regular fa-image text-2xl text-blue-700/60"></i>
+              <span class="text-xs font-semibold text-stone-700">images/culture_afrobeats.jpg 사진 위치</span>
+            </div>
+          </div>
+
+          <!-- 상세 설명 (타일라 수정 반영) -->
+          <div class="mt-3.5 p-3 rounded-2xl bg-blue-50/50 border border-blue-100 text-xs text-stone-700 leading-relaxed">
+            나이지리아와 가나 등 서아프리카의 전통 리듬에 현대 힙합, R&B를 결합한 장르입니다. 타일라(Tyla), 레마(Rema) 등의 아티스트가 전 세계 스트리밍 수십억 회를 기록하며 K-POP 못지않은 신드롬을 일으키고 있습니다.
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-stone-100 text-[11px] text-stone-400 flex justify-between">
+          <span>그래미 신설 부문 수상</span>
+          <span class="text-blue-700 font-bold">글로벌 팝의 중심</span>
+        </div>
+      </div>
+
+      <!-- 카드 3: 아프로비츠를 들어볼까요? -->
+      <div class="bg-white rounded-3xl p-6 border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[11px] font-extrabold text-amber-800 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full">
+              음악 감상 & 참여
+            </span>
+            <span class="text-[11px] text-rose-500 font-semibold animate-pulse">● 실시간 감상</span>
+          </div>
+          <h3 class="text-lg font-black text-stone-900 tracking-tight">아프로비츠를 들어볼까요?</h3>
+          <p class="text-stone-500 text-xs mt-1">리듬을 직접 듣고 아프리카 문화의 매력을 느껴보세요</p>
+
+          <!-- 유튜브 바로가기 네모 박스 -->
+          <a 
+            href="https://youtu.be/23v1sAktHkc?si=AZoOpV3J3m1VdZlc" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="mt-4 p-4 rounded-2xl bg-gradient-to-br from-stone-900 to-stone-800 text-white flex items-center justify-between hover:from-rose-950 hover:to-stone-900 border border-stone-700 shadow-md transition-all group"
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+                <i class="fa-brands fa-youtube text-xl"></i>
+              </div>
+              <div class="text-left">
+                <span class="text-xs font-black block text-stone-100">아프로비츠 대표 음원 감상</span>
+                <span class="text-[10px] text-stone-400">유튜브 새 창으로 열기</span>
+              </div>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-stone-400 group-hover:text-amber-300 transition-colors"></i>
+          </a>
+
+          <!-- 학생 의견 작성 칸 -->
+          <div class="mt-4">
+            <label for="afrobeats-opinion" class="block text-xs font-bold text-stone-700 mb-1.5 flex items-center justify-between">
+              <span>💡 음악을 듣고 느낀 점을 적어보세요</span>
+              <span id="save-status" class="text-[10px] text-emerald-600 font-normal hidden">저장 완료</span>
+            </label>
+            <textarea 
+              id="afrobeats-opinion" 
+              rows="3" 
+              placeholder="예: 생각보다 훨씬 트렌디하고 세련된 리듬이라 놀라웠어요! 기존의 부족 음악 이미지와 완전히 달라요." 
+              class="w-full p-3 rounded-2xl border border-stone-300 text-xs text-stone-800 focus:outline-none focus:border-emerald-500 bg-stone-50 focus:bg-white resize-none leading-relaxed transition-all"
+            ></textarea>
+            <button 
+              onclick="saveOpinion()" 
+              class="w-full mt-2 py-2 rounded-xl bg-emerald-700 text-white font-extrabold text-xs hover:bg-emerald-800 transition-colors shadow-sm flex items-center justify-center gap-1.5"
+            >
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>의견 등록하기 (최종 페이지에 반영)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-stone-100 text-[11px] text-stone-400 flex justify-between">
+          <span>* 등록된 의견은 Final에서 확인 가능</span>
+          <span class="text-amber-700 font-bold">학생 참여</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 하단 네비게이션: culture2.html (가옥과 기후 적응)로 연결 -->
+    <div class="mt-6 pt-4 border-t border-stone-200/80 flex items-center justify-between">
+      <a href="subject.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-stone-300 bg-white text-stone-600 text-xs font-bold hover:bg-stone-50 transition-colors">
+        <i class="fa-solid fa-arrow-left"></i> 이전 (탐구 과제)
+      </a>
+
+      <button 
+        onclick="goToCulture2()" 
+        class="inline-flex items-center gap-3 px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-extrabold text-sm hover:from-emerald-700 hover:to-teal-800 transition-all shadow-lg shadow-emerald-700/20 hover:shadow-emerald-700/30 hover:-translate-y-0.5 active:translate-y-0"
+      >
+        <span>다음 탐구: 자연환경과 가옥 (culture2)</span>
+        <i class="fa-solid fa-arrow-right text-xs"></i>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="w-full px-8 py-3.5 bg-white/60 border-t border-ivory text-center text-xs text-stone-500 font-medium">
+    지리교과교육론 수업시연 | Stage 01-1: 아프리카 현대 대중문화와 글로벌 소프트파워
+  </footer>
+
+  <!-- 자바스크립트 로직 -->
+  <script>
+    function saveOpinion() {
+      const text = document.getElementById('afrobeats-opinion').value.trim();
+      if (!text) {
+        alert('느낀 점을 한 줄 이상 작성해 주세요!');
+        return;
+      }
+      localStorage.setItem('student_afrobeats_opinion', text);
+      
+      const status = document.getElementById('save-status');
+      status.classList.remove('hidden');
+      setTimeout(() => status.classList.add('hidden'), 2500);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('student_afrobeats_opinion');
+      if (saved) {
+        document.getElementById('afrobeats-opinion').value = saved;
+      }
+    });
+
+    function goToCulture2() {
+      const text = document.getElementById('afrobeats-opinion').value.trim();
+      if (text) {
+        localStorage.setItem('student_afrobeats_opinion', text);
+      }
+      location.href = 'culture2.html';
+    }
+  </script>
+
+</body>
+</html>

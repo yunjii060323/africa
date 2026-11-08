@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 01-2 - 자연환경과 가옥 | Mapping Africa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    * { font-family: 'Pretendard', sans-serif; }
+    
+    .bg-ivory { background-color: #FBF9F4; }
+    .border-ivory { border-color: #ECE7DE; }
+  </style>
+</head>
+<body class="bg-ivory text-stone-800 min-h-screen flex flex-col justify-between selection:bg-emerald-200 selection:text-emerald-950">
+
+  <!-- 상단 헤더: 가치 퍼즐 슬롯 상태 -->
+  <header class="w-full px-8 py-4 bg-white/90 backdrop-blur-md border-b border-ivory sticky top-0 z-50 flex justify-between items-center shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+    <div class="flex items-center gap-3">
+      <a href="culture1.html" class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-sm hover:bg-emerald-100 transition-colors">
+        <i class="fa-solid fa-earth-africa text-xl"></i>
+      </a>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-[11px] font-bold text-emerald-800 tracking-wider uppercase bg-emerald-100/60 px-2 py-0.5 rounded-md">STAGE 01 - 파트 2</span>
+          <span class="text-[11px] text-stone-500 font-medium">자연환경과 기후 적응</span>
+        </div>
+        <h1 class="text-base font-extrabold text-stone-900 tracking-tight mt-0.5">문화 다양성의 조각 찾기 (2)</h1>
+      </div>
+    </div>
+
+    <!-- 3대 가치 퍼즐 슬롯 -->
+    <div class="flex items-center gap-2.5 bg-stone-50 px-4 py-2 rounded-2xl border border-stone-200/80 shadow-inner">
+      <span class="text-xs text-stone-600 font-bold mr-1 flex items-center gap-1">
+        <i class="fa-solid fa-puzzle-piece text-emerald-800"></i> 가치 퍼즐
+      </span>
+      
+      <!-- Slot 1: 문화 (현재 탐구 완료 직전) -->
+      <div id="slot-culture" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-emerald-500 bg-emerald-50 text-emerald-800 text-xs font-bold transition-all duration-300">
+        <i id="slot-icon" class="fa-solid fa-spinner fa-spin text-[10px] text-emerald-600"></i>
+        <span id="slot-text">1. 문화 다양성 (탐구중)</span>
+      </div>
+
+      <!-- Slot 2: 인구 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-stone-300 bg-white text-stone-500 text-xs font-semibold">
+        <i class="fa-solid fa-lock text-[10px] text-stone-400"></i>
+        <span>2. 젊은 인구</span>
+      </div>
+
+      <!-- Slot 3: 자원 -->
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-dashed border-stone-300 bg-white text-stone-500 text-xs font-semibold">
+        <i class="fa-solid fa-lock text-[10px] text-stone-400"></i>
+        <span>3. 풍부한 자원</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 작업 영역 -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-8 flex flex-col justify-center">
+    
+    <div class="bg-white rounded-3xl p-8 lg:p-10 border border-ivory shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between">
+      
+      <div>
+        <!-- 고정관념 깨기 배너 -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold mb-3">
+          <i class="fa-solid fa-circle-question"></i> 고정관념 깨기
+        </div>
+        
+        <h2 class="text-2xl font-black text-stone-900 tracking-tight leading-snug">
+          "문명이 발달하지 않았기 때문에 사막 근처 흙벽돌집에서 사는 것이다."
+        </h2>
+        
+        <p class="text-stone-500 text-xs lg:text-sm mt-2 leading-relaxed">
+          흙벽돌집은 결코 낙후된 기술이 아닌, 에어컨 없이 50도의 불볕더위를 이겨내는 가장 정교한 기후 적응의 결과물입니다.
+        </p>
+
+        <!-- 가옥 비교 2단 그리드 (클릭 없이 바로 노출) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          
+          <!-- 1. 건조 기후 흙벽돌집 카드 -->
+          <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 flex flex-col justify-between">
+            <div>
+              <div class="w-full h-48 rounded-xl overflow-hidden mb-3 bg-stone-100 relative flex items-center justify-center">
+                <img 
+                  src="images/culture_mudhouse.jpg" 
+                  alt="모로코 흙벽돌집" 
+                  class="w-full h-full object-cover"
+                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                >
+                <div class="hidden w-full h-full bg-gradient-to-r from-emerald-100/70 to-blue-100/70 flex flex-col items-center justify-center text-stone-500 gap-1 p-2 text-center">
+                  <i class="fa-regular fa-image text-2xl text-emerald-700/60"></i>
+                  <span class="text-xs font-semibold text-stone-600 leading-tight">images/culture_mudhouse.jpg 사진 위치</span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between px-1 mb-2">
+                <span class="text-sm font-bold text-stone-900">모로코 흙벽돌집</span>
+                <span class="text-[11px] font-semibold text-amber-800 bg-amber-100/70 px-2 py-0.5 rounded-md">건조 기후 적응</span>
+              </div>
+
+              <!-- 상시 노출 설명 -->
+              <p class="text-xs text-stone-600 leading-relaxed px-1">
+                두꺼운 흙벽으로 낮의 뜨거운 열기를 차단하고, 밤의 한기를 막아주는 천연 단열 구조입니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. 현대 친환경 제로에너지 흙 건축 카드 -->
+          <div class="bg-emerald-50/40 rounded-2xl p-4 border border-emerald-200 flex flex-col justify-between">
+            <div>
+              <div class="w-full h-48 rounded-xl overflow-hidden mb-3 bg-stone-100 relative flex items-center justify-center">
+                <img 
+                  src="images/eco_building.jpg" 
+                  alt="현대 친환경 흙 건축" 
+                  class="w-full h-full object-cover"
+                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                >
+                <div class="hidden w-full h-full bg-gradient-to-r from-emerald-100/70 to-blue-100/70 flex flex-col items-center justify-center text-stone-500 gap-1 p-2 text-center">
+                  <i class="fa-regular fa-image text-2xl text-emerald-700/60"></i>
+                  <span class="text-xs font-semibold text-stone-600 leading-tight">images/eco_building.jpg 사진 위치</span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between px-1 mb-2">
+                <span class="text-sm font-bold text-emerald-950">현대 친환경 건축</span>
+                <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-md">생태 건축의 계승</span>
+              </div>
+
+              <!-- 상시 노출 설명 -->
+              <p class="text-xs text-stone-700 leading-relaxed px-1">
+                전통 흙공법을 현대적으로 계승하여 에어컨과 탄소 배출 없이 실내 온도를 유지하는 미래형 건축으로 세계 건축계가 주목하고 있습니다.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 수정 반영된 지리적 가치 도출 박스 -->
+        <div class="mt-6 p-4 rounded-2xl bg-stone-50 border border-stone-200 text-xs lg:text-sm text-stone-800 leading-relaxed">
+          <strong class="text-stone-900 font-extrabold mr-1">💡 지리적 가치 도출:</strong> 
+          아프리카의 흙벽돌집은 결핍의 산물이 아니라, 각 지역의 기후 환경에 능동적으로 적응한 것이다.
+        </div>
+      </div>
+
+      <!-- 하단: 조각 획득 및 people.html 이동 영역 -->
+      <div class="mt-8 pt-4 border-t border-stone-100 flex items-center justify-between">
+        <a href="culture1.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-stone-300 bg-white text-stone-600 text-xs font-bold hover:bg-stone-50 transition-colors">
+          <i class="fa-solid fa-arrow-left"></i> 이전 (현대 문화)
+        </a>
+
+        <!-- 조각 획득 버튼 & 다음 단계 버튼 -->
+        <div class="flex items-center gap-3">
+          <button id="btn-claim" onclick="claimCulturePiece()" class="inline-flex items-center gap-2 px-7 py-3 rounded-2xl bg-emerald-700 text-white font-extrabold text-sm hover:bg-emerald-800 shadow-md shadow-emerald-800/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+            <i class="fa-solid fa-puzzle-piece"></i>
+            <span>[문화 다양성] 조각 획득하기</span>
+          </button>
+          
+          <button id="btn-next" onclick="location.href='people.html';" class="hidden inline-flex items-center gap-2 px-7 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold text-sm hover:from-blue-700 hover:to-indigo-700 shadow-md shadow-blue-600/20 transition-all animate-bounce">
+            <span>Stage 02 (인구)로 이동</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="w-full px-8 py-3.5 bg-white/60 border-t border-ivory text-center text-xs text-stone-500 font-medium">
+    지리교과교육론 수업시연 | Stage 01-2: 자연환경에 능동적으로 적응한 가옥과 문화
+  </footer>
+
+  <!-- 자바스크립트 인터랙션 로직 -->
+  <script>
+    function claimCulturePiece() {
+      const slot = document.getElementById('slot-culture');
+      const icon = document.getElementById('slot-icon');
+      const text = document.getElementById('slot-text');
+      const btnClaim = document.getElementById('btn-claim');
+      const btnNext = document.getElementById('btn-next');
+
+      // 상단 슬롯 잠금 해제 연출
+      slot.className = "flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-emerald-600 bg-emerald-600 text-white text-xs font-extrabold shadow-sm transition-all duration-300 transform scale-105";
+      icon.className = "fa-solid fa-circle-check text-[11px] text-emerald-200";
+      text.innerText = "1. 문화 다양성 (완료)";
+
+      // 버튼 전환
+      btnClaim.classList.add('hidden');
+      btnNext.classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
