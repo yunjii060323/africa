@@ -236,7 +236,7 @@
     지리교과교육론 수업시연 | Stage 01-1: 아프리카 현대 대중문화와 글로벌 소프트파워
   </footer>
 
-  <!-- 자바스크립트 로직 -->
+ <!-- 자바스크립트 로직 수정본 -->
   <script>
     function saveOpinion() {
       const text = document.getElementById('afrobeats-opinion').value.trim();
@@ -244,6 +244,8 @@
         alert('느낀 점을 한 줄 이상 작성해 주세요!');
         return;
       }
+      // final.html과 완벽 호환되도록 student_culture_opinion으로 저장
+      localStorage.setItem('student_culture_opinion', text);
       localStorage.setItem('student_afrobeats_opinion', text);
       
       const status = document.getElementById('save-status');
@@ -252,7 +254,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem('student_afrobeats_opinion');
+      // 이전에 저장된 답변 불러오기
+      const saved = localStorage.getItem('student_culture_opinion') || localStorage.getItem('student_afrobeats_opinion');
       if (saved) {
         document.getElementById('afrobeats-opinion').value = saved;
       }
@@ -261,11 +264,9 @@
     function goToCulture2() {
       const text = document.getElementById('afrobeats-opinion').value.trim();
       if (text) {
+        localStorage.setItem('student_culture_opinion', text);
         localStorage.setItem('student_afrobeats_opinion', text);
       }
       location.href = 'culture2.html';
     }
   </script>
-
-</body>
-</html>
